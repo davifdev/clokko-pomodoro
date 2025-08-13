@@ -1,4 +1,4 @@
-import { History, MoonIcon, Settings } from "lucide-react";
+import { History, MoonIcon, Settings, Timer } from "lucide-react";
 import Container from "../container";
 import { Link } from "react-router-dom";
 
@@ -12,6 +12,10 @@ const Header = () => {
           </Link>
 
           <div className="flex items-center justify-between gap-4">
+            <Link to="/" className="flex items-center gap-2">
+              <Timer />
+              <span>Pomodoro</span>
+            </Link>
             <Link to="/settings" className="flex items-center gap-2">
               <Settings />
               <span>Personalize</span>
