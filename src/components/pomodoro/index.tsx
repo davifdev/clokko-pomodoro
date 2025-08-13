@@ -1,4 +1,6 @@
+import Button from "../button";
 import Container from "../container";
+import Countdown from "../countdown";
 import Input from "../input";
 
 const Pomodoro = () => {
@@ -22,7 +24,7 @@ const Pomodoro = () => {
         <div>
           <form className="flex flex-col items-center gap-12">
             <div className="w-[364px] h-[364px] rounded-full bg-blue-50 dark:bg-gray-900 flex items-center justify-center flex-col  gap-6 border-4 border-blue-200 dark:border-gray-800">
-              <span className="text-8xl text-blue-600 font-medium">20:00</span>
+              <Countdown />
               <div className="flex flex-col text-center text-lg">
                 <span>Foque por:</span>
                 <strong>15min</strong>
@@ -35,9 +37,12 @@ const Pomodoro = () => {
               className="text-center border-2 border-blue-200 p-2 rounded-lg bg-blue-50 dark:bg-gray-900 dark:border-gray-800"
             />
 
-            <button className="bg-blue-600 p-4 text-white rounded-full w-full text-lg font-semibold cursor-pointer">
-              Começar
-            </button>
+            <Button
+              className="bg-blue-600 p-4 text-white rounded-full w-full text-lg font-semibold cursor-pointer"
+              type="submit"
+            >
+              Iniciar
+            </Button>
           </form>
         </div>
       </div>

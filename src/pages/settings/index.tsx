@@ -1,11 +1,13 @@
+import Button from "../../components/button";
 import Container from "../../components/container";
 import Input from "../../components/input";
+import Title from "../../components/title";
 
 const Settings = () => {
   return (
     <Container>
       <div className="flex flex-col items-center justify-center gap-4 pt-40">
-        <h2 className="mb-4 font-semibold text-3xl">Configurações</h2>
+        <Title>Configurações</Title>
         <form className="flex flex-col items-center gap-6 mb-5">
           <Input
             defaultValue={25}
@@ -25,9 +27,13 @@ const Settings = () => {
             labelText="Descanso longo"
             id="longRestTime"
           />
-          <button className="bg-blue-600 p-2 text-white rounded-full w-full text-lg font-semibold cursor-pointer">
+
+          <Button
+            className="bg-blue-600 p-2 text-white rounded-full w-full text-lg font-semibold cursor-pointer"
+            type="submit"
+          >
             Salvar
-          </button>
+          </Button>
         </form>
       </div>
     </Container>

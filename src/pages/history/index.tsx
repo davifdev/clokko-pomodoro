@@ -1,5 +1,7 @@
 import { Trash } from "lucide-react";
 import Container from "../../components/container";
+import Button from "../../components/button";
+import Title from "../../components/title";
 
 const History = () => {
   return (
@@ -7,11 +9,14 @@ const History = () => {
       <Container>
         <div className="flex flex-col items-center justify-center gap-4 pt-40 w-full">
           <div className="w-full flex items-center justify-between">
-            <h2 className="text-3xl mb-4 font-semibold">Histórico</h2>
-            <button className="flex items-center gap-1 cursor-pointer">
+            <Title>Histórico</Title>
+            <Button
+              className="flex items-center gap-1 cursor-pointer"
+              type="button"
+            >
               <span>Limpar histórico</span>
               <Trash />
-            </button>
+            </Button>
           </div>
 
           <div className="w-full">
