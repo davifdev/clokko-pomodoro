@@ -1,8 +1,29 @@
 import { History, MoonIcon, Settings, Timer } from "lucide-react";
 import Container from "../container";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Button from "../button";
+
+type ThemeType = "dark" | "light";
 
 const Header = () => {
+  const [theme, setTheme] = useState<ThemeType>(() => {
+    const themeStorage = localStorage.getItem("theme") as ThemeType;
+    return themeStorage;
+  });
+
+  const handleThemeClick = () => {
+    setTheme((prevTheme) => {
+      const nextTheme = prevTheme === "dark" ? "light" : "dark";
+      return nextTheme;
+    });
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <header className="p-8">
       <Container>
@@ -24,10 +45,14 @@ const Header = () => {
               <History />
               <span>Histórico</span>
             </Link>
-            <button className="flex items-center gap-2">
+            <Button
+              className="flex items-center gap-2 cursor-pointer"
+              type="button"
+              onClick={handleThemeClick}
+            >
               <MoonIcon />
               <span>Tema escuro</span>
-            </button>
+            </Button>
           </div>
         </div>
       </Container>
