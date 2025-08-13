@@ -1,6 +1,7 @@
 import Button from "../button";
 import Container from "../container";
 import Countdown from "../countdown";
+import Cycles from "../cycles";
 import Input from "../input";
 
 const Pomodoro = () => {
@@ -22,15 +23,15 @@ const Pomodoro = () => {
           </div>
         </div>
         <div>
-          <form className="flex flex-col items-center gap-12">
+          <form className="flex flex-col items-center gap-6">
             <div className="w-[364px] h-[364px] rounded-full bg-blue-50 dark:bg-gray-900 flex items-center justify-center flex-col  gap-6 border-4 border-blue-200 dark:border-gray-800">
               <Countdown />
               <div className="flex flex-col text-center text-lg">
                 <span>Foque por:</span>
-                <strong>15min</strong>
+                <strong>25min</strong>
               </div>
             </div>
-
+            <Cycles />
             <Input
               type="text"
               placeholder="Digite uma tarefa"
