@@ -31,6 +31,8 @@ const Settings = () => {
           <Button
             className="bg-blue-600 p-2 text-white rounded-full w-full text-lg font-semibold cursor-pointer"
             type="submit"
+            aria-label="Salvar configurações"
+            title="Salvar configurações"
           >
             Salvar
           </Button>

@@ -33,15 +33,30 @@ const Header = () => {
           </Link>
 
           <div className="flex items-center justify-between gap-4">
-            <Link to="/" className="flex items-center gap-2">
+            <Link
+              to="/"
+              className="flex items-center gap-2"
+              aria-label="Ir para o pomodoro"
+              title="Ir para o pomodoro"
+            >
               <Timer />
               <span>Pomodoro</span>
             </Link>
-            <Link to="/settings" className="flex items-center gap-2">
+            <Link
+              to="/settings"
+              className="flex items-center gap-2"
+              aria-label="Personalize seu pomodoro"
+              title="Personalize seu pomodoro"
+            >
               <Settings />
               <span>Personalize</span>
             </Link>
-            <Link to="/history" className="flex items-center gap-2">
+            <Link
+              to="/history"
+              className="flex items-center gap-2"
+              aria-label="Histórico"
+              title="Histórico"
+            >
               <History />
               <span>Histórico</span>
             </Link>
@@ -49,6 +64,8 @@ const Header = () => {
               className="flex items-center gap-2 cursor-pointer"
               type="button"
               onClick={handleThemeClick}
+              aria-label="Alterar tema"
+              title="Alterar tema"
             >
               <MoonIcon />
               <span>Tema escuro</span>

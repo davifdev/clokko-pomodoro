@@ -41,6 +41,8 @@ const Pomodoro = () => {
             <Button
               className="bg-blue-600 p-4 text-white rounded-full w-full text-lg font-semibold cursor-pointer"
               type="submit"
+              aria-label="Iniciar pomodoro"
+              title="Iniciar pomodoro"
             >
               Iniciar
             </Button>
