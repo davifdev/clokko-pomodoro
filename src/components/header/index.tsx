@@ -1,4 +1,4 @@
-import { History, MoonIcon, Settings, Timer } from "lucide-react";
+import { History, MoonIcon, Settings, SunIcon, Timer } from "lucide-react";
 import Container from "../container";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -23,6 +23,11 @@ const Header = () => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
+
+  const themeIcon = {
+    light: <MoonIcon />,
+    dark: <SunIcon />,
+  };
 
   return (
     <header className="p-8">
@@ -67,8 +72,8 @@ const Header = () => {
               aria-label="Alterar tema"
               title="Alterar tema"
             >
-              <MoonIcon />
-              <span>Tema escuro</span>
+              {themeIcon[theme]}
+              <span>{theme === "dark" ? "Tema claro" : "Tema escuro"}</span>
             </Button>
           </div>
         </div>
