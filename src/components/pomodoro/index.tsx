@@ -4,10 +4,11 @@ import Container from "../container";
 import Countdown from "../countdown";
 import Cycles from "../cycles";
 import Input from "../input";
-import type { TaskModel } from "../../models/task-model";
 import type { TaskStateModel } from "../../models/task-state-model";
 import { getCurrentCycle } from "../../utils/getCurrentCycle";
 import { getCycleType } from "../../utils/getCycleType";
+import { secondsToMinutes } from "../../utils/secondsToMinutes";
+import type { TaskModel } from "../../models/task-model";
 
 const Pomodoro = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -59,7 +60,7 @@ const Pomodoro = () => {
         activeTask: newTask,
         currentCycle,
         secondsRemaining,
-        formattedSecondsRemaining: "00:00",
+        formattedSecondsRemaining: secondsToMinutes(secondsRemaining),
         tasks: [...prevState.tasks, newTask],
       };
     });
