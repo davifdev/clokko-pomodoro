@@ -6,6 +6,8 @@ import Cycles from "../cycles";
 import Input from "../input";
 import type { TaskModel } from "../../models/task-model";
 import type { TaskStateModel } from "../../models/task-state-model";
+import { getCurrentCycle } from "../../utils/getCurrentCycle";
+import { getCycleType } from "../../utils/getCycleType";
 
 const Pomodoro = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -25,6 +27,9 @@ const Pomodoro = () => {
 
   const [taskState, setTaskState] = useState<TaskStateModel>(initialState);
 
+  const currentCycle = getCurrentCycle(taskState.currentCycle);
+  const cycleType = getCycleType(currentCycle);
+
   const handleSubmitTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -41,8 +46,8 @@ const Pomodoro = () => {
       startDate: Date.now(),
       completedDate: null,
       interruptDate: null,
-      durationInMinutes: 25,
-      type: "workTime",
+      durationInMinutes: taskState.config[cycleType],
+      type: cycleType,
     };
 
     const secondsRemaining = newTask.durationInMinutes * 60;
@@ -52,7 +57,7 @@ const Pomodoro = () => {
         ...prevState,
         config: { ...prevState.config },
         activeTask: newTask,
-        currentCycle: 1,
+        currentCycle,
         secondsRemaining,
         formattedSecondsRemaining: "00:00",
         tasks: [...prevState.tasks, newTask],
