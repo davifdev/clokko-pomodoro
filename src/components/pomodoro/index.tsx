@@ -1,10 +1,66 @@
+import { useRef, useState } from "react";
 import Button from "../button";
 import Container from "../container";
 import Countdown from "../countdown";
 import Cycles from "../cycles";
 import Input from "../input";
+import type { TaskModel } from "../../models/task-model";
+import type { TaskStateModel } from "../../models/task-state-model";
 
 const Pomodoro = () => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const initialState: TaskStateModel = {
+    tasks: [],
+    secondsRemaining: 0,
+    formattedSecondsRemaining: "00:00",
+    activeTask: null,
+    currentCycle: 0,
+    config: {
+      workTime: 25,
+      shortRestTime: 5,
+      longRestTime: 15,
+    },
+  };
+
+  const [taskState, setTaskState] = useState<TaskStateModel>(initialState);
+
+  const handleSubmitTask = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!inputRef.current) return null;
+
+    if (!inputRef.current.value.trim()) {
+      alert("Digite uma tarefa!");
+      return;
+    }
+
+    const newTask: TaskModel = {
+      id: Date.now().toString(),
+      name: inputRef.current.value,
+      startDate: Date.now(),
+      completedDate: null,
+      interruptDate: null,
+      durationInMinutes: 25,
+      type: "workTime",
+    };
+
+    const secondsRemaining = newTask.durationInMinutes * 60;
+
+    setTaskState((prevState) => {
+      return {
+        ...prevState,
+        config: { ...prevState.config },
+        activeTask: newTask,
+        currentCycle: 1,
+        secondsRemaining,
+        formattedSecondsRemaining: "00:00",
+        tasks: [...prevState.tasks, newTask],
+      };
+    });
+  };
+
+  console.log(taskState);
   return (
     <Container>
       <div className="pt-10 flex flex-col items-center justify-center gap-12">
@@ -23,7 +79,10 @@ const Pomodoro = () => {
           </div>
         </div>
         <div>
-          <form className="flex flex-col items-center gap-6">
+          <form
+            className="flex flex-col items-center gap-6"
+            onSubmit={handleSubmitTask}
+          >
             <div className="w-[364px] h-[364px] rounded-full bg-blue-50 dark:bg-gray-900 flex items-center justify-center flex-col  gap-6 border-4 border-blue-200 dark:border-gray-800">
               <Countdown />
               <div className="flex flex-col text-center text-lg">
@@ -36,6 +95,7 @@ const Pomodoro = () => {
               type="text"
               placeholder="Digite uma tarefa"
               className="text-center border-2 border-blue-200 p-2 rounded-lg bg-blue-50 dark:bg-gray-900 dark:border-gray-800"
+              ref={inputRef}
             />
 
             <Button

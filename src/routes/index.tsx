@@ -11,8 +11,8 @@ const MainRouter = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/history" element={<History />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/history" element={<History />} />
       </Routes>
       <Footer />
     </BrowserRouter>
