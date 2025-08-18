@@ -10,6 +10,7 @@ import { getCycleType } from "../../utils/getCycleType";
 import { secondsToMinutes } from "../../utils/secondsToMinutes";
 import type { TaskModel } from "../../models/task-model";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import Tips from "../tips";
 
 const Pomodoro = () => {
   const { taskState, setTaskState } = useTaskContext();
@@ -60,7 +61,6 @@ const Pomodoro = () => {
     setTaskState((prevState) => {
       return {
         ...prevState,
-        currentCycle,
         activeTask: null,
         secondsRemaining: 0,
         formattedSecondsRemaining: "00:00",
@@ -99,8 +99,7 @@ const Pomodoro = () => {
             <div className="w-[364px] h-[364px] rounded-full bg-blue-50 dark:bg-gray-900 flex items-center justify-center flex-col  gap-6 border-4 border-blue-200 dark:border-gray-800">
               <Countdown />
               <div className="flex flex-col text-center text-lg">
-                <span>Foque por:</span>
-                <strong>25min</strong>
+                <Tips cycleType={cycleType} taskState={taskState} />
               </div>
             </div>
             <Cycles />
