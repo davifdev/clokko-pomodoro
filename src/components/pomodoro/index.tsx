@@ -52,6 +52,28 @@ const Pomodoro = () => {
     });
   };
 
+  const handleInterruptTask = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+
+    setTaskState((prevState) => {
+      return {
+        ...prevState,
+        currentCycle,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: "00:00",
+        tasks: prevState.tasks.map((task) => {
+          if (prevState.activeTask && prevState.activeTask.id === task.id) {
+            return { ...task, interruptDate: Date.now() };
+          }
+          return task;
+        }),
+      };
+    });
+  };
+
   return (
     <Container>
       <div className="pt-10 flex flex-col items-center justify-center gap-12">
@@ -87,16 +109,31 @@ const Pomodoro = () => {
               placeholder="Digite uma tarefa"
               className="text-center border-2 border-blue-200 p-2 rounded-lg bg-blue-50 dark:bg-gray-900 dark:border-gray-800"
               ref={inputRef}
+              disabled={!!taskState.activeTask}
             />
 
-            <Button
-              className="bg-blue-600 p-4 text-white rounded-full w-full text-lg font-semibold cursor-pointer"
-              type="submit"
-              aria-label="Iniciar pomodoro"
-              title="Iniciar pomodoro"
-            >
-              Iniciar
-            </Button>
+            {!taskState.activeTask && (
+              <Button
+                className="bg-blue-600 p-4 text-white rounded-full w-full text-lg font-semibold cursor-pointer"
+                type="submit"
+                aria-label="Iniciar pomodoro"
+                title="Iniciar pomodoro"
+              >
+                Iniciar
+              </Button>
+            )}
+
+            {taskState.activeTask && (
+              <Button
+                className="bg-red-600 p-4 text-white rounded-full w-full text-lg font-semibold cursor-pointer"
+                type="button"
+                aria-label="Parar pomodoro"
+                title="Parar pomodoro"
+                onClick={handleInterruptTask}
+              >
+                Parar
+              </Button>
+            )}
           </form>
         </div>
       </div>

@@ -5,7 +5,7 @@ export type TaskModel = {
   name: string;
   durationInMinutes: number;
   startDate: number;
-  completedDate: string | null;
-  interruptDate: string | null; 
+  completedDate: number | null;
+  interruptDate: number | null; 
   type: keyof TaskStateModel['config'];
 }
