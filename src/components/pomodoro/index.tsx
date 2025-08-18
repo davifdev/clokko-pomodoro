@@ -51,7 +51,7 @@ const Pomodoro = () => {
       };
     });
   };
-  
+
   return (
     <Container>
       <div className="pt-10 flex flex-col items-center justify-center gap-12">
