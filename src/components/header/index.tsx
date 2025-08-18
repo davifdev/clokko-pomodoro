@@ -27,7 +27,7 @@ const Header = () => {
   const themeIcon = {
     light: <MoonIcon />,
     dark: <SunIcon />,
-  };
+  } as const;
 
   return (
     <header className="p-8">

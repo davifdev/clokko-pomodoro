@@ -1,33 +1,19 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Button from "../button";
 import Container from "../container";
 import Countdown from "../countdown";
 import Cycles from "../cycles";
 import Input from "../input";
-import type { TaskStateModel } from "../../models/task-state-model";
+
 import { getCurrentCycle } from "../../utils/getCurrentCycle";
 import { getCycleType } from "../../utils/getCycleType";
 import { secondsToMinutes } from "../../utils/secondsToMinutes";
 import type { TaskModel } from "../../models/task-model";
+import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 
 const Pomodoro = () => {
+  const { taskState, setTaskState } = useTaskContext();
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const initialState: TaskStateModel = {
-    tasks: [],
-    secondsRemaining: 0,
-    formattedSecondsRemaining: "00:00",
-    activeTask: null,
-    currentCycle: 0,
-    config: {
-      workTime: 25,
-      shortRestTime: 5,
-      longRestTime: 15,
-    },
-  };
-
-  const [taskState, setTaskState] = useState<TaskStateModel>(initialState);
-
   const currentCycle = getCurrentCycle(taskState.currentCycle);
   const cycleType = getCycleType(currentCycle);
 
@@ -65,8 +51,7 @@ const Pomodoro = () => {
       };
     });
   };
-
-  console.log(taskState);
+  
   return (
     <Container>
       <div className="pt-10 flex flex-col items-center justify-center gap-12">
@@ -80,7 +65,7 @@ const Pomodoro = () => {
             <strong>0</strong>
           </div>
           <div className="flex items-center gap-2 text-lg">
-            <span>Longo descanso</span>
+            <span>Descanso longo</span>
             <strong>0</strong>
           </div>
         </div>
