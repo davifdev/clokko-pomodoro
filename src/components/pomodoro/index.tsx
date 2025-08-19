@@ -1,19 +1,20 @@
 import { useRef } from "react";
+
 import Button from "../button";
 import Container from "../container";
 import Countdown from "../countdown";
 import Cycles from "../cycles";
 import Input from "../input";
+import Tips from "../tips";
 
 import { getCurrentCycle } from "../../utils/getCurrentCycle";
 import { getCycleType } from "../../utils/getCycleType";
-import { secondsToMinutes } from "../../utils/secondsToMinutes";
 import type { TaskModel } from "../../models/task-model";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
-import Tips from "../tips";
+import { TaskActionModel } from "../../contexts/TaskContext/TaskActions";
 
 const Pomodoro = () => {
-  const { taskState, setTaskState } = useTaskContext();
+  const { taskState, dispatch } = useTaskContext();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const currentCycle = getCurrentCycle(taskState.currentCycle);
   const cycleType = getCycleType(currentCycle);
@@ -38,19 +39,7 @@ const Pomodoro = () => {
       type: cycleType,
     };
 
-    const secondsRemaining = newTask.durationInMinutes * 60;
-
-    setTaskState((prevState) => {
-      return {
-        ...prevState,
-        config: { ...prevState.config },
-        activeTask: newTask,
-        currentCycle,
-        secondsRemaining,
-        formattedSecondsRemaining: secondsToMinutes(secondsRemaining),
-        tasks: [...prevState.tasks, newTask],
-      };
-    });
+    dispatch({ type: TaskActionModel.START_TASK, payload: newTask });
   };
 
   const handleInterruptTask = (
@@ -58,20 +47,7 @@ const Pomodoro = () => {
   ) => {
     event.preventDefault();
 
-    setTaskState((prevState) => {
-      return {
-        ...prevState,
-        activeTask: null,
-        secondsRemaining: 0,
-        formattedSecondsRemaining: "00:00",
-        tasks: prevState.tasks.map((task) => {
-          if (prevState.activeTask && prevState.activeTask.id === task.id) {
-            return { ...task, interruptDate: Date.now() };
-          }
-          return task;
-        }),
-      };
-    });
+    dispatch({ type: TaskActionModel.INTERRUPT_TASK });
   };
 
   return (

@@ -1,40 +1,45 @@
-import type { TaskModel } from "../../models/task-model";
 import type { TaskStateModel } from "../../models/task-state-model";
+import { getCurrentCycle } from "../../utils/getCurrentCycle";
+import { secondsToMinutes } from "../../utils/secondsToMinutes";
+import { TaskActionModel, type TaskActionType } from "./TaskActions";
 
-export enum TaskActionModel {
-  START_TASK = "START_TASK",
-  INTERRUPT_TASK = "INTERRUPT_TASK",
-  RESET_TASK = "RESET_TASK",
-  COUNT_DOWN = "COUNT_DOWN",
-  COMPLETE_TASK = "COMPLETE_TASK",
-  CHANGE_SETTINGS = "CHANGE_SETTINGS",
-}
+export const taskReducer = (
+  state: TaskStateModel,
+  action: TaskActionType
+): TaskStateModel => {
+  switch (action.type) {
+    case TaskActionModel.START_TASK: {
+      const newTask = action.payload;
+      const currentCycle = getCurrentCycle(state.currentCycle);
+      const secondsRemaining = action.payload.durationInMinutes * 60;
 
-type TaskActionTypeWithPayload =
-  | {
-      type: TaskActionModel.START_TASK;
-      payload: TaskModel;
+      return {
+        ...state,
+        config: { ...state.config },
+        activeTask: newTask,
+        currentCycle,
+        secondsRemaining,
+        formattedSecondsRemaining: secondsToMinutes(secondsRemaining),
+        tasks: [...state.tasks, newTask],
+      };
     }
-  | {
-      type: TaskActionModel.COUNT_DOWN;
-      payload: { secondsRemaining: number };
-    }
-  | {
-      type: TaskActionModel.CHANGE_SETTINGS;
-      payload: TaskStateModel["config"];
-    };
 
-type TaskActionTypeWithoutPayload =
-  | {
-      type: TaskActionModel.INTERRUPT_TASK;
+    case TaskActionModel.INTERRUPT_TASK: {
+      return {
+        ...state,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: "00:00",
+        tasks: state.tasks.map((task) => {
+          if (state.activeTask && state.activeTask.id === task.id) {
+            return { ...task, interruptDate: Date.now() };
+          }
+          return task;
+        }),
+      };
     }
-  | {
-      type: TaskActionModel.RESET_TASK;
-    }
-  | {
-      type: TaskActionModel.COMPLETE_TASK;
-    };
 
-export type TaskActionType =
-  | TaskActionTypeWithPayload
-  | TaskActionTypeWithoutPayload;
+    default:
+      return state;
+  }
+};
