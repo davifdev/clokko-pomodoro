@@ -1,8 +1,8 @@
 import { History, MoonIcon, Settings, SunIcon, Timer } from "lucide-react";
 import Container from "../container";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../button";
+import RouterLink from "../router-link";
 
 type ThemeType = "dark" | "light";
 
@@ -33,38 +33,38 @@ const Header = () => {
     <header className="p-8">
       <Container>
         <div className="flex items-center justify-between">
-          <Link to="/">
+          <RouterLink href="/">
             <strong className="text-lg">Clokko Pomodoro</strong>
-          </Link>
+          </RouterLink>
 
           <div className="flex items-center justify-between gap-4">
-            <Link
-              to="/"
+            <RouterLink
+              href="/"
               className="flex items-center gap-2"
               aria-label="Ir para o pomodoro"
               title="Ir para o pomodoro"
             >
               <Timer />
               <span>Pomodoro</span>
-            </Link>
-            <Link
-              to="/settings"
+            </RouterLink>
+            <RouterLink
+              href="/settings"
               className="flex items-center gap-2"
               aria-label="Personalize seu pomodoro"
               title="Personalize seu pomodoro"
             >
               <Settings />
               <span>Personalize</span>
-            </Link>
-            <Link
-              to="/history"
+            </RouterLink>
+            <RouterLink
+              href="/history"
               className="flex items-center gap-2"
               aria-label="Histórico"
               title="Histórico"
             >
               <History />
               <span>Histórico</span>
-            </Link>
+            </RouterLink>
             <Button
               className="flex items-center gap-2 cursor-pointer"
               type="button"

@@ -12,6 +12,7 @@ import { getCycleType } from "../../utils/getCycleType";
 import type { TaskModel } from "../../models/task-model";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { TaskActionModel } from "../../contexts/TaskContext/TaskActions";
+import { showMessage } from "../../adapters/showMessage";
 
 const Pomodoro = () => {
   const { taskState, dispatch } = useTaskContext();
@@ -25,7 +26,7 @@ const Pomodoro = () => {
     if (!inputRef.current) return null;
 
     if (!inputRef.current.value.trim()) {
-      alert("Digite uma tarefa!");
+      showMessage.error("Digite uma tarefa!");
       return;
     }
 
