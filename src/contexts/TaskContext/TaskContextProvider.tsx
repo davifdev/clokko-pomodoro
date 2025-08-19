@@ -4,13 +4,31 @@ import { TaskContext } from "./TaskContext";
 import { taskReducer } from "./TaskReducer";
 import { TimerWorkerManager } from "../../workers/TimerWorkerManager";
 import { TaskActionModel } from "./TaskActions";
+import type { TaskStateModel } from "../../models/task-state-model";
 
 type TaskContextProviderProps = {
   children: ReactNode;
 };
 
 export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
-  const [taskState, dispatch] = useReducer(taskReducer, initialTaskState);
+  const [taskState, dispatch] = useReducer(
+    taskReducer,
+    initialTaskState,
+    () => {
+      const storageState = localStorage.getItem("taskState");
+
+      if (!storageState) return initialTaskState;
+
+      const parsedStorageState = JSON.parse(storageState) as TaskStateModel;
+
+      return {
+        ...parsedStorageState,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: "00:00",
+      };
+    }
+  );
 
   const worker = TimerWorkerManager.getInstance();
 
@@ -18,11 +36,9 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
     const countDownSeconds = e.data;
 
     if (countDownSeconds <= 0) {
-      console.log("Entrou!");
       dispatch({ type: TaskActionModel.COMPLETE_TASK });
       worker.terminate();
     } else {
-      console.log("Entrei");
       dispatch({
         type: TaskActionModel.COUNT_DOWN,
         payload: { secondsRemaining: countDownSeconds },
@@ -32,7 +48,7 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
 
   useEffect(() => {
     localStorage.setItem("taskState", JSON.stringify(taskState));
-    
+
     if (!taskState.activeTask) {
       worker.terminate();
       return;

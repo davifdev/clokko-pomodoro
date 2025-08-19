@@ -21,6 +21,7 @@ const Pomodoro = () => {
   const cycleType = getCycleType(currentCycle);
 
   const handleSubmitTask = (event: React.FormEvent<HTMLFormElement>) => {
+    showMessage.dismiss();
     event.preventDefault();
 
     if (!inputRef.current) return null;
@@ -41,14 +42,17 @@ const Pomodoro = () => {
     };
 
     dispatch({ type: TaskActionModel.START_TASK, payload: newTask });
+    showMessage.sucess("Tarefa Iniciada");
   };
 
   const handleInterruptTask = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    showMessage.dismiss();
     event.preventDefault();
 
     dispatch({ type: TaskActionModel.INTERRUPT_TASK });
+    showMessage.error("Tarefa Interrompida");
   };
 
   return (
@@ -86,6 +90,7 @@ const Pomodoro = () => {
               className="text-center border-2 border-blue-200 p-2 rounded-lg bg-blue-50 dark:bg-gray-900 dark:border-gray-800"
               ref={inputRef}
               disabled={!!taskState.activeTask}
+              defaultValue={taskState.activeTask?.name}
             />
 
             {!taskState.activeTask && (
