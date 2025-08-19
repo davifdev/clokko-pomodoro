@@ -59,15 +59,33 @@ const Pomodoro = () => {
     <Container>
       <div className="pt-10 flex flex-col items-center justify-center gap-12">
         <div className="flex items-center gap-8">
-          <div className="flex items-center gap-2 text-lg border-b-2 border-b-blue-500 p-2">
+          <div
+            className={`flex items-center gap-2 text-lg  p-2 ${
+              taskState.activeTask?.type === "workTime"
+                ? "border-b-2  border-b-blue-500"
+                : "border-b-0"
+            }`}
+          >
             <span>Pomodoro</span>
             <strong>0</strong>
           </div>
-          <div className="flex items-center gap-2 text-lg">
+          <div
+            className={`flex items-center gap-2 text-lg  p-2 ${
+              taskState.activeTask?.type === "shortRestTime"
+                ? " border-b-2 border-b-blue-500"
+                : "border-b-0"
+            }`}
+          >
             <span>Descanso</span>
             <strong>0</strong>
           </div>
-          <div className="flex items-center gap-2 text-lg">
+          <div
+            className={`flex items-center gap-2 text-lg p-2 ${
+              taskState.activeTask?.type === "longRestTime"
+                ? "border-b-2  border-b-blue-500"
+                : "border-b-0"
+            }`}
+          >
             <span>Descanso longo</span>
             <strong>0</strong>
           </div>
