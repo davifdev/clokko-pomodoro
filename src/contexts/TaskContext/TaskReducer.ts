@@ -1,6 +1,7 @@
 import type { TaskStateModel } from "../../models/task-state-model";
 import { getCurrentCycle } from "../../utils/getCurrentCycle";
 import { secondsToMinutes } from "../../utils/secondsToMinutes";
+import { initialTaskState } from "./initialTaskState";
 import { TaskActionModel, type TaskActionType } from "./TaskActions";
 
 export const taskReducer = (
@@ -62,6 +63,14 @@ export const taskReducer = (
           action.payload.secondsRemaining
         ),
       };
+    }
+
+    case TaskActionModel.CHANGE_SETTINGS: {
+      return { ...state, config: { ...action.payload } };
+    }
+
+    case TaskActionModel.RESET_TASK: {
+      return { ...initialTaskState };
     }
 
     default:

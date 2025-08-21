@@ -9,7 +9,7 @@ const MesageContainer = ({ children }: MesageContainerProps) => {
     <>
       {children}
       <ToastContainer
-        position="top-right"
+        position="top-left"
         autoClose={10000}
         hideProgressBar={false}
         newestOnTop={false}

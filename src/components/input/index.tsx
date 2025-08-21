@@ -13,7 +13,7 @@ const Input = ({
   ...props
 }: InputProps) => {
   return (
-    <div className="flex flex-col items-start gap-2">
+    <div className="flex flex-col items-center gap-2">
       <label htmlFor={id}>{labelText}</label>
       <input
         placeholder={placeholder}

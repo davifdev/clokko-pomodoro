@@ -8,7 +8,8 @@ type ThemeType = "dark" | "light";
 
 const Header = () => {
   const [theme, setTheme] = useState<ThemeType>(() => {
-    const themeStorage = localStorage.getItem("theme") as ThemeType;
+    const themeStorage =
+      (localStorage.getItem("theme") as ThemeType) || "light";
     return themeStorage;
   });
 
