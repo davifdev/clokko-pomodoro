@@ -1,10 +1,11 @@
-import { useEffect, useReducer, type ReactNode } from "react";
+import { useEffect, useReducer, useRef, type ReactNode } from "react";
 import { initialTaskState } from "./initialTaskState";
 import { TaskContext } from "./TaskContext";
 import { taskReducer } from "./TaskReducer";
 import { TimerWorkerManager } from "../../workers/TimerWorkerManager";
 import { TaskActionModel } from "./TaskActions";
 import type { TaskStateModel } from "../../models/task-state-model";
+import { loadBeep } from "../../utils/loadBeep";
 
 type TaskContextProviderProps = {
   children: ReactNode;
@@ -29,13 +30,17 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
       };
     }
   );
-
+  const playBeepRef = useRef<ReturnType<typeof loadBeep> | null>(null);
   const worker = TimerWorkerManager.getInstance();
 
   worker.onmessage((e) => {
     const countDownSeconds = e.data;
 
     if (countDownSeconds <= 0) {
+      if (playBeepRef.current) {
+        playBeepRef.current();
+        playBeepRef.current = null;
+      }
       dispatch({ type: TaskActionModel.COMPLETE_TASK });
       worker.terminate();
     } else {
@@ -59,6 +64,14 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
     worker.postMessage(taskState);
   }, [taskState, worker]);
 
+  useEffect(() => {
+    if (taskState.activeTask && playBeepRef.current === null) {
+      playBeepRef.current = loadBeep();
+    } else {
+      playBeepRef.current = null;
+    }
+  }, [taskState.activeTask]);
+  
   return (
     <TaskContext.Provider value={{ taskState, dispatch }}>
       {children}

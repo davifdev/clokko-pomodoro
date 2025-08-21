@@ -19,6 +19,7 @@ const Pomodoro = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const currentCycle = getCurrentCycle(taskState.currentCycle);
   const cycleType = getCycleType(currentCycle);
+  const lastTaskName = taskState.tasks[taskState.tasks.length - 1]?.name || "";
 
   const handleSubmitTask = (event: React.FormEvent<HTMLFormElement>) => {
     showMessage.dismiss();
@@ -108,7 +109,7 @@ const Pomodoro = () => {
               className="text-center border-2 border-blue-200 p-2 rounded-lg bg-blue-50 dark:bg-gray-900 dark:border-gray-800"
               ref={inputRef}
               disabled={!!taskState.activeTask}
-              defaultValue={taskState.activeTask?.name}
+              defaultValue={lastTaskName}
             />
 
             {!taskState.activeTask && (
