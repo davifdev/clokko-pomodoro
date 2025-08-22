@@ -8,7 +8,11 @@ type RouterLinkProps = {
 
 const RouterLink = ({ children, href, ...props }: RouterLinkProps) => {
   return (
-    <Link to={href} {...props}>
+    <Link
+      to={href}
+      {...props}
+      className="flex items-center gap-2 text-sm sm:text-lg"
+    >
       {children}
     </Link>
   );

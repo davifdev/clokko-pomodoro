@@ -73,7 +73,7 @@ const History = () => {
   return (
     <>
       <Container>
-        <div className="flex flex-col items-center gap-4 w-full h-[75vh] pt-20">
+        <div className="flex flex-col items-center gap-4 w-full h-[75vh] pt-10">
           <div className="w-full flex items-center justify-between ">
             <Title>Histórico</Title>
             {taskState.tasks.length > 0 && (
@@ -83,13 +83,13 @@ const History = () => {
                 color="red"
                 onClick={handleResetHistory}
               >
-                <span>Limpar histórico</span>
-                <Trash />
+                <span className="text-sm">Limpar histórico</span>
+                <Trash width={16} height={16} />
               </Button>
             )}
           </div>
 
-          <div className="w-full">
+          <div className="w-full overflow-auto">
             {hasTask && (
               <TableComponent
                 taskState={taskState}

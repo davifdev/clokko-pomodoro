@@ -60,10 +60,10 @@ const Home = () => {
 
   return (
     <Container>
-      <div className="pt-10 flex flex-col items-center justify-center gap-12">
+      <div className="pt-4 sm:pt-10 flex flex-col items-center justify-center gap-8 sm:gap-12 h-[75vh]">
         <div className="flex items-center gap-8">
           <div
-            className={`flex items-center gap-2 text-lg  p-2 ${
+            className={`flex items-center gap-2 text-lg p-2 h-[37px] ${
               taskState.activeTask?.type === "workTime"
                 ? "border-b-2  border-b-blue-500"
                 : "border-b-0"
@@ -72,7 +72,7 @@ const Home = () => {
             <strong>Pomodoro</strong>
           </div>
           <div
-            className={`flex items-center gap-2 text-lg  p-2 ${
+            className={`flex items-center gap-2 text-lg p-2 h-[37px] ${
               taskState.activeTask?.type === "shortRestTime"
                 ? " border-b-2 border-b-blue-500"
                 : "border-b-0"
@@ -81,7 +81,7 @@ const Home = () => {
             <strong>Descanso</strong>
           </div>
           <div
-            className={`flex items-center gap-2 text-lg p-2 ${
+            className={`flex items-center gap-2 text-lg p-2 h-[37px] ${
               taskState.activeTask?.type === "longRestTime"
                 ? "border-b-2  border-b-blue-500"
                 : "border-b-0"
@@ -92,7 +92,7 @@ const Home = () => {
         </div>
         <div>
           <form className="flex flex-col gap-6" onSubmit={handleSubmitTask}>
-            <div className="w-[364px] h-[364px] rounded-full bg-blue-50 dark:bg-gray-900 flex items-center justify-center flex-col  gap-6 border-4 border-blue-200 dark:border-gray-800">
+            <div className="w-[290px] h-[290px] rounded-full bg-blue-50 dark:bg-gray-900 flex items-center justify-center flex-col  gap-6 border-4 border-blue-200 dark:border-gray-800 sm:w-[364px] sm:h-[364px]">
               <Countdown />
               <div className="flex flex-col text-center text-lg">
                 <Tips cycleType={cycleType} taskState={taskState} />

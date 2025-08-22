@@ -38,8 +38,8 @@ const Header = () => {
   }, [theme]);
 
   const themeIcon = {
-    light: <MoonIcon />,
-    dark: <SunIcon />,
+    light: <MoonIcon width={16} height={16} />,
+    dark: <SunIcon width={16} height={16} />,
   } as const;
 
   return (
@@ -84,7 +84,7 @@ const Header = () => {
             </div>
             <div className="flex items-center gap-4">
               <Button
-                className="flex items-center gap-2 cursor-pointe"
+                className="flex items-center gap-2 cursor-pointer"
                 type="button"
                 onClick={handleThemeClick}
                 aria-label="Alterar tema"
@@ -93,39 +93,41 @@ const Header = () => {
               >
                 {themeIcon[theme]}
               </Button>
-              <button className="cursor-pointer md:hidden" onClick={handleToggleMenu}>
+              <button
+                className="cursor-pointer md:hidden"
+                onClick={handleToggleMenu}
+              >
                 <Menu />
                 <div
                   className={`relative transition-all duration-300 ${
-                    menuToggle ? "opacity-100" : "opacity-0"
+                    menuToggle
+                      ? "opacity-100 pointer-events-auto"
+                      : "opacity-0 pointer-events-none"
                   }`}
                 >
-                  <nav className="flex flex-col items-start gap-6 absolute w-38 h-38 bg-blue-50 dark:bg-gray-800 p-4 rounded-lg right-0 top-5">
+                  <nav className="flex flex-col items-start justify-center gap-6 absolute w-38 h-38 bg-blue-50 dark:bg-gray-800 p-4 rounded-lg right-0 top-3">
                     <RouterLink
                       href="/"
-                      className="flex items-center gap-2"
                       aria-label="Ir para o pomodoro"
                       title="Ir para o pomodoro"
                     >
-                      <Timer />
+                      <Timer width={16} height={16} />
                       <span>Pomodoro</span>
                     </RouterLink>
                     <RouterLink
                       href="/settings"
-                      className="flex items-center gap-2"
                       aria-label="Personalize seu pomodoro"
                       title="Personalize seu pomodoro"
                     >
-                      <Settings />
+                      <Settings width={16} height={16} />
                       <span>Personalize</span>
                     </RouterLink>
                     <RouterLink
                       href="/history"
-                      className="flex items-center gap-2"
                       aria-label="Histórico"
                       title="Histórico"
                     >
-                      <History />
+                      <History width={16} height={16} />
                       <span>Histórico</span>
                     </RouterLink>
                   </nav>

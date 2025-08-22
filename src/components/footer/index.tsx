@@ -9,7 +9,6 @@ const Footer = () => {
             <strong>Clokko Pomodoro</strong> - {new Date().getFullYear()} Todos os Direitos
             Reservados &copy;
           </p>
-          <a href="#">Entenda sobre a técnina de pomodoro</a>
         </div>
       </Container>
     </footer>
