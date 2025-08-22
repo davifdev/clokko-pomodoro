@@ -62,7 +62,7 @@ const Settings = () => {
 
   return (
     <Container>
-      <div className="flex flex-col items-center justify-center gap-4 pt-40">
+      <div className="flex flex-col items-center justify-center gap-4 h-[75vh]">
         <Title>Configurações</Title>
         <form
           className="flex flex-col gap-6 mb-5"
