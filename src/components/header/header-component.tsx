@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Container from '../container';
 import { MoonIcon, SettingsIcon } from 'lucide-react';
 
 const Header = () => {
   return (
-    <header className="border-b-2 border-zinc-50">
+    <header className="fixed z-10 w-full border-b-2 border-zinc-50 bg-white">
       <Container>
         <div className="flex items-center justify-between p-6">
           <Link to="/">
@@ -14,14 +14,35 @@ const Header = () => {
           </Link>
           <nav className="flex items-center gap-9">
             <ul className="flex items-center gap-4">
-              <li className="text-lime-600">
-                <Link to="/">Pomodoro</Link>
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? 'text-lime-800' : 'text-lime-600'
+                  }
+                >
+                  Pomodoro
+                </NavLink>
               </li>
               <li className="text-lime-600">
-                <Link to="/history">Histórico</Link>
+                <NavLink
+                  to="/history"
+                  className={({ isActive }) =>
+                    isActive ? 'text-lime-800' : 'text-lime-600'
+                  }
+                >
+                  Histórico
+                </NavLink>
               </li>
               <li className="text-lime-600">
-                <Link to="/history">Sobre</Link>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive ? 'text-lime-800' : 'text-lime-600'
+                  }
+                >
+                  Sobre
+                </NavLink>
               </li>
             </ul>
             <div className="flex items-center gap-4">
