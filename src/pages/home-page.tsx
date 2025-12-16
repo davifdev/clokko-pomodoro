@@ -1,5 +1,6 @@
-import Button from '../../components/button/button-component';
-import Container from '../../components/container';
+import Button from '../components/button-component';
+import Container from '../components/container';
+import Input from '../components/input-component';
 
 const Home = () => {
   return (
@@ -24,6 +25,7 @@ const Home = () => {
               <div className="h-4 w-4 rounded-full bg-lime-200"></div>
               <div className="h-4 w-4 rounded-full bg-lime-300"></div>
             </div>
+            <Input type="text" placeholder="Digite uma tarefa" />
             <Button className="w-96">Começar</Button>
           </div>
 

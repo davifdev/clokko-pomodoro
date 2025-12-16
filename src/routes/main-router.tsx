@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import History from '../pages/history/history-page';
-import Home from '../pages/home/home-page';
-import About from '../pages/about/about-page';
-import NotFound from '../pages/not-found/not-found-page';
-import Header from '../components/header/header-component';
+
+import Header from '../components/header-component';
+
+import History from '../pages/history-page';
+import About from '../pages/about-page';
+import NotFound from '../pages/not-found-page';
+import Home from '../pages/home-page';
 
 const MainRouter = () => {
   return (

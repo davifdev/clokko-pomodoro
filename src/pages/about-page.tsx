@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Container from '../../components/container';
+import Container from '../components/container';
 
 const About = () => {
   return (

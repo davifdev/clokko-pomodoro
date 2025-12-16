@@ -1,8 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
-import Container from '../container';
+import Container from './container';
 import { MoonIcon, SettingsIcon } from 'lucide-react';
 // import Config from './config-component';
-
 const Header = () => {
   return (
     <header className="fixed z-10 w-full border-b-2 border-zinc-50 bg-white">
@@ -10,7 +9,7 @@ const Header = () => {
         <div className="flex items-center justify-between p-6">
           <Link to="/">
             <h1 className="text-2xl font-semibold text-lime-800">
-              <span className="text">Clokko</span>Pomodoro
+              Clokko Pomodoro
             </h1>
           </Link>
           <nav className="flex items-center gap-9">

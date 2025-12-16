@@ -1,5 +1,5 @@
 import { Trash2Icon } from 'lucide-react';
-import Container from '../../components/container';
+import Container from '../components/container';
 
 const History = () => {
   return (
