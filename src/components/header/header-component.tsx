@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import Container from '../container';
 import { MoonIcon, SettingsIcon } from 'lucide-react';
-import Config from '../config/config-component';
+// import Config from './config-component';
 
 const Header = () => {
   return (
@@ -10,7 +10,7 @@ const Header = () => {
         <div className="flex items-center justify-between p-6">
           <Link to="/">
             <h1 className="text-2xl font-semibold text-lime-800">
-              Clokko Pomodoro
+              <span className="text">Clokko</span>Pomodoro
             </h1>
           </Link>
           <nav className="flex items-center gap-9">
@@ -22,17 +22,17 @@ const Header = () => {
                     isActive ? 'text-lime-800' : 'text-lime-600'
                   }
                 >
-                  Pomodoro
+                  <span className="font-semibold text-lime-600">Pomodoro</span>
                 </NavLink>
               </li>
-              <li className="text-lime-600">
+              <li>
                 <NavLink
                   to="/history"
                   className={({ isActive }) =>
                     isActive ? 'text-lime-800' : 'text-lime-600'
                   }
                 >
-                  Histórico
+                  <span className="font-semibold text-lime-600">Histórico</span>
                 </NavLink>
               </li>
               <li className="text-lime-600">
@@ -42,7 +42,7 @@ const Header = () => {
                     isActive ? 'text-lime-800' : 'text-lime-600'
                   }
                 >
-                  Sobre
+                  <span className="font-semibold text-lime-600">Sobre</span>
                 </NavLink>
               </li>
             </ul>
@@ -57,7 +57,7 @@ const Header = () => {
           </nav>
         </div>
       </Container>
-      <Config />
+      {/* <Config /> */}
     </header>
   );
 };

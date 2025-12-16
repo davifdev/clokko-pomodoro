@@ -1,3 +1,5 @@
+import Button from '../button/button-component';
+
 const Config = () => {
   return (
     <main className="absolute top-0 left-0 z-20 flex h-screen w-screen items-center justify-center backdrop-brightness-60">
@@ -33,9 +35,7 @@ const Config = () => {
               className="rounded-md bg-zinc-50 p-2 text-center text-lime-800 outline-0"
             />
           </div>
-          <button className="w-full rounded-md bg-lime-600 p-2 text-white">
-            Salvar
-          </button>
+          <Button type="submit">Salvar</Button>
         </form>
       </div>
     </main>
