@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import Container from '../container';
 import { MoonIcon, SettingsIcon } from 'lucide-react';
+import Config from '../config/config-component';
 
 const Header = () => {
   return (
@@ -56,6 +57,7 @@ const Header = () => {
           </nav>
         </div>
       </Container>
+      <Config />
     </header>
   );
 };

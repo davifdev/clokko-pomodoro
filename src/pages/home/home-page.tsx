@@ -1,12 +1,10 @@
 import Container from '../../components/container';
-import Header from '../../components/header/header-component';
 
 const Home = () => {
   return (
     <main>
-      <Header />
       <Container>
-        <div className="flex flex-col items-center justify-center gap-10 pt-20">
+        <div className="flex flex-col items-center justify-center gap-10 pt-40">
           <div className="flex items-center gap-8">
             <p className="text-lg font-semibold text-lime-800">Pomodoro</p>
             <p className="text-lg font-semibold text-lime-800">Descanso</p>
@@ -14,7 +12,7 @@ const Home = () => {
               Descanso Longo
             </p>
           </div>
-          <div className="flex h-96 w-96 items-center justify-center rounded-full bg-zinc-50 p-2">
+          <div className="flex h-96 w-96 items-center justify-center rounded-full border-4 border-lime-600 bg-zinc-50 p-2">
             <p className="text-8xl font-bold text-lime-600">25:00</p>
           </div>
           <div className="flex w-full flex-col items-center justify-center gap-4">
