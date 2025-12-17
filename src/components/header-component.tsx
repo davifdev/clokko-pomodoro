@@ -1,8 +1,36 @@
 import { Link, NavLink } from 'react-router-dom';
 import Container from './container';
-import { MoonIcon, SettingsIcon } from 'lucide-react';
-// import Config from './config-component';
+import { MoonIcon, SettingsIcon, SunIcon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import Config from './config-component';
+type ThemeType = 'light' | 'dark';
+
 const Header = () => {
+  const [theme, setTheme] = useState<ThemeType>(() => {
+    const savedTheme = (localStorage.getItem('theme') as ThemeType) || 'light';
+    return savedTheme;
+  });
+  const [openConfig, setOpenConfig] = useState(false);
+
+  const toggleTheme = () => {
+    console.log('Toggling theme');
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleIcon = {
+    light: <MoonIcon className="text-sky-500 dark:text-slate-100" size={18} />,
+    dark: <SunIcon className="text-sky-500 dark:text-slate-100" size={18} />,
+  } as const;
+
+  const handleClickOpenConfig = () => {
+    setOpenConfig(!openConfig);
+  };
+
   return (
     <header className="fixed z-10 w-full border-b-2 border-zinc-50 bg-white dark:border-slate-800 dark:bg-slate-900">
       <Container>
@@ -52,23 +80,21 @@ const Header = () => {
               </li>
             </ul>
             <div className="flex items-center gap-4">
-              <button>
+              <button onClick={handleClickOpenConfig}>
                 <SettingsIcon
                   className="text-sky-500 dark:text-slate-100"
                   size={18}
                 />
               </button>
-              <button>
-                <MoonIcon
-                  className="text-sky-500 dark:text-slate-100"
-                  size={18}
-                />
-              </button>
+              <button onClick={toggleTheme}>{toggleIcon[theme]}</button>
             </div>
           </nav>
         </div>
       </Container>
-      {/* <Config /> */}
+      <Config
+        openConfig={openConfig}
+        handleClickOpenConfig={handleClickOpenConfig}
+      />
     </header>
   );
 };
