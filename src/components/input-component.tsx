@@ -1,5 +1,4 @@
 import type { ComponentProps } from 'react';
-
 interface InputProps extends ComponentProps<'input'> {
   className?: string;
   label?: string;
