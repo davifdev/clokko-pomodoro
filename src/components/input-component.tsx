@@ -12,7 +12,7 @@ const Input = ({ label, className, ...props }: InputProps) => {
       </label>
       <input
         {...props}
-        className={`rounded-md bg-zinc-50 p-2 text-center text-lime-800 outline-0 ${className}`}
+        className={`rounded-md bg-zinc-50 p-2 text-center text-lime-800 outline-0 dark:bg-slate-700 dark:text-slate-100 ${className}`}
       />
     </div>
   );
