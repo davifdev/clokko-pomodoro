@@ -4,15 +4,15 @@ import Input from './input-component';
 import type { FormEvent } from 'react';
 interface ConfigProps {
   openConfig: boolean;
-  handleClickOpenConfig: () => void;
+  toggleConfig: () => void;
 }
 
-const Config = ({ openConfig, handleClickOpenConfig }: ConfigProps) => {
+const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
   if (!openConfig) return null;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleClickOpenConfig();
+    toggleConfig();
   };
 
   return (
@@ -20,7 +20,7 @@ const Config = ({ openConfig, handleClickOpenConfig }: ConfigProps) => {
       {createPortal(
         <main
           className="fixed top-0 left-0 z-10 flex h-screen w-screen items-center justify-center backdrop-blur-sm"
-          onClick={handleClickOpenConfig}
+          onClick={toggleConfig}
         >
           <div
             className="relative z-50 w-80 rounded-md bg-white p-6 shadow-lg dark:bg-slate-900"

@@ -34,11 +34,6 @@ const Home = () => {
             <Input type="text" placeholder="Digite uma tarefa" />
             <Button className="w-96">Começar</Button>
           </div>
-
-          <p className="text-sky-500 dark:text-slate-100">
-            <strong>Clokko Pomodoro</strong> - 2025 Todos os Direitos Reservados
-            &copy;
-          </p>
         </div>
       </Container>
     </main>

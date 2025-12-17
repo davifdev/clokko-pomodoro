@@ -6,6 +6,7 @@ import History from '../pages/history-page';
 import About from '../pages/about-page';
 import NotFound from '../pages/not-found-page';
 import Home from '../pages/home-page';
+import Footer from '../components/footer-component';
 
 const MainRouter = () => {
   return (
@@ -17,6 +18,7 @@ const MainRouter = () => {
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

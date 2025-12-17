@@ -1,8 +1,10 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Container from './container';
 import { MoonIcon, SettingsIcon, SunIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Config from './config-component';
+import RouterLink from './router-link';
+
 type ThemeType = 'light' | 'dark';
 
 const Header = () => {
@@ -27,7 +29,7 @@ const Header = () => {
     dark: <SunIcon className="text-sky-500 dark:text-slate-100" size={18} />,
   } as const;
 
-  const handleClickOpenConfig = () => {
+  const toggleConfig = () => {
     setOpenConfig(!openConfig);
   };
 
@@ -40,47 +42,20 @@ const Header = () => {
               Clokko Pomodoro
             </h1>
           </Link>
-          <nav className="flex items-center gap-9">
+          <nav className="flex items-center gap-10">
             <ul className="flex items-center gap-4">
               <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'text-sky-600 dark:text-slate-300'
-                      : 'text-sky-500 dark:text-slate-100'
-                  }
-                >
-                  <strong>Pomodoro</strong>
-                </NavLink>
+                <RouterLink href="/" text="Pomodoro" />
               </li>
               <li>
-                <NavLink
-                  to="/history"
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'text-sky-600 dark:text-slate-300'
-                      : 'text-sky-500 dark:text-slate-100'
-                  }
-                >
-                  <strong>Histórico</strong>
-                </NavLink>
+                <RouterLink href="/history" text="Histórico" />
               </li>
               <li className="text-sky-600">
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'text-sky-600 dark:text-slate-300'
-                      : 'text-sky-500 dark:text-slate-100'
-                  }
-                >
-                  <strong>Sobre</strong>
-                </NavLink>
+                <RouterLink href="/about" text="Sobre" />
               </li>
             </ul>
             <div className="flex items-center gap-4">
-              <button onClick={handleClickOpenConfig}>
+              <button onClick={toggleConfig}>
                 <SettingsIcon
                   className="text-sky-500 dark:text-slate-100"
                   size={18}
@@ -91,10 +66,7 @@ const Header = () => {
           </nav>
         </div>
       </Container>
-      <Config
-        openConfig={openConfig}
-        handleClickOpenConfig={handleClickOpenConfig}
-      />
+      <Config openConfig={openConfig} toggleConfig={toggleConfig} />
     </header>
   );
 };

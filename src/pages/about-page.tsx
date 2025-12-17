@@ -153,7 +153,7 @@ const About = () => {
             Pomodoros! 🍅🚀
           </p>
 
-          <p className="dark:text-slate-100">
+          <p className="mb-4 dark:text-slate-100">
             <em>"Foco total, sem pressa, sem pausa, só vai!"</em> 💪🧘‍♂️
           </p>
         </div>
