@@ -7,6 +7,7 @@ import type { TaskStateModel } from '../models/taskStateModel';
 import { getCurrentCycle } from '../utils/getCurrentCycle';
 import { getCycleType } from '../utils/getCycleType';
 import { formatSecondsToMinutes } from '../utils/formatSecondsToMinutes';
+import Cycles from '../components/cycles-component-';
 
 const Home = () => {
   const initialTaskStateValue: TaskStateModel = {
@@ -89,14 +90,7 @@ const Home = () => {
             onSubmit={createTask}
           >
             <div className="flex items-center gap-2">
-              <p>
-                {currentCycle}-{cycleType}
-              </p>
-              {/* <div className="h-4 w-4 rounded-full bg-slate-100"></div>
-              <div className="h-4 w-4 rounded-full bg-slate-200"></div>
-              <div className="h-4 w-4 rounded-full bg-slate-100"></div>
-              <div className="h-4 w-4 rounded-full bg-slate-200"></div>
-              <div className="h-4 w-4 rounded-full bg-slate-300"></div> */}
+              <Cycles currentTask={currentTask} />
             </div>
             <Input type="text" placeholder="Digite uma tarefa" ref={inputRef} />
             <Button className="w-96">Começar</Button>
