@@ -8,6 +8,7 @@ import { getCurrentCycle } from '../utils/getCurrentCycle';
 import { getCycleType } from '../utils/getCycleType';
 import { formatSecondsToMinutes } from '../utils/formatSecondsToMinutes';
 import Cycles from '../components/cycles-component-';
+import { toast } from 'react-toastify';
 
 const Home = () => {
   const initialTaskStateValue: TaskStateModel = {
@@ -35,6 +36,11 @@ const Home = () => {
     e.preventDefault();
 
     if (!inputRef.current) return;
+
+    if (!inputRef.current.value.trim()) {
+      toast.error('Por favor, insira uma tarefa válida.');
+      return;
+    }
 
     const newTask: TaskModel = {
       id: Date.now().toString(),

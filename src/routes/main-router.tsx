@@ -7,6 +7,7 @@ import About from '../pages/about-page';
 import NotFound from '../pages/not-found-page';
 import Home from '../pages/home-page';
 import Footer from '../components/footer-component';
+import { ToastContainer } from 'react-toastify';
 
 const MainRouter = () => {
   return (
@@ -19,6 +20,7 @@ const MainRouter = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
+      <ToastContainer />
     </BrowserRouter>
   );
 };
