@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from 'react';
+import { useRef, useState, type MouseEvent } from 'react';
 import Button from '../components/button-component';
 import Container from '../components/container';
 import Input from '../components/input-component';
@@ -30,10 +30,8 @@ const Home = () => {
 
   const currentCycle = getCurrentCycle(currentTask.currentCycle);
   const cycleType = getCycleType(currentCycle);
-  console.log(currentCycle);
-  console.log(cycleType);
 
-  const createTask = (e: FormEvent<HTMLFormElement>) => {
+  const handleCreateTask = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (!inputRef.current) return;
@@ -63,7 +61,24 @@ const Home = () => {
     });
   };
 
-  console.log(currentTask);
+  const handleInterruptTask = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setCurrentTask((prevTasks) => {
+      return {
+        ...prevTasks,
+        activeTask: null,
+        tasks: prevTasks.tasks.map((task) => {
+          if (task.id === prevTasks.activeTask?.id) {
+            return {
+              ...task,
+              interruptDate: Date.now(),
+            };
+          }
+          return task;
+        }),
+      };
+    });
+  };
 
   return (
     <main>
@@ -85,16 +100,22 @@ const Home = () => {
               {currentTask.formattedSecondsRemaining}
             </p>
           </div>
-          <form
-            className="flex flex-col items-center justify-center gap-10"
-            onSubmit={createTask}
-          >
+          <div className="flex flex-col items-center justify-center gap-10">
             <div className="flex items-center gap-2">
               <Cycles currentTask={currentTask} />
             </div>
             <Input type="text" placeholder="Digite uma tarefa" ref={inputRef} />
-            <Button className="w-96">Começar</Button>
-          </form>
+            {currentTask.activeTask && (
+              <Button className="w-96" onClick={handleInterruptTask}>
+                Cancelar
+              </Button>
+            )}
+            {!currentTask.activeTask && (
+              <Button className="w-96" onClick={handleCreateTask}>
+                Começar
+              </Button>
+            )}
+          </div>
         </div>
       </Container>
     </main>
