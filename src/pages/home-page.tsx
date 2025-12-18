@@ -6,6 +6,7 @@ import type { TaskModel } from '../models/taskModel';
 import type { TaskStateModel } from '../models/taskStateModel';
 import { getCurrentCycle } from '../utils/getCurrentCycle';
 import { getCycleType } from '../utils/getCycleType';
+import { formatSecondsToMinutes } from '../utils/formatSecondsToMinutes';
 
 const Home = () => {
   const initialTaskStateValue: TaskStateModel = {
@@ -54,7 +55,7 @@ const Home = () => {
         secondsRemaining,
         activeTask: newTask,
         currentCycle: currentCycle,
-        formattedSecondsRemaining: '00:00',
+        formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining),
         tasks: [...prevTasks.tasks, newTask],
         config: { ...prevTasks.config },
       };
