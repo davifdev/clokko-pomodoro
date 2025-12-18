@@ -105,11 +105,14 @@ const About = () => {
           </p>
           <ul className="mb-6">
             <li className="dark:text-slate-100">
-              🟡 Amarelo: Ciclo de trabalho (foco).
+              🟢 Verde: Ciclo de trabalho (foco).
             </li>
-            <li className="dark:text-slate-100">🟢 Verde: Descanso curto.</li>
             <li className="dark:text-slate-100">
-              🔵 Azul: Descanso longo (aparece a cada 8 ciclos).
+              {' '}
+              🔴 Vermelho: Descanso curto.
+            </li>
+            <li className="dark:text-slate-100">
+              🟡 Amarelo: Descanso longo (aparece a cada 8 ciclos).
             </li>
           </ul>
 

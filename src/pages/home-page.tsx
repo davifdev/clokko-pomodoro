@@ -67,6 +67,7 @@ const Home = () => {
       return {
         ...prevTasks,
         activeTask: null,
+        formattedSecondsRemaining: '00:00',
         tasks: prevTasks.tasks.map((task) => {
           if (task.id === prevTasks.activeTask?.id) {
             return {
@@ -106,12 +107,20 @@ const Home = () => {
             </div>
             <Input type="text" placeholder="Digite uma tarefa" ref={inputRef} />
             {currentTask.activeTask && (
-              <Button className="w-96" onClick={handleInterruptTask}>
+              <Button
+                className="w-96"
+                onClick={handleInterruptTask}
+                color="secondary"
+              >
                 Cancelar
               </Button>
             )}
             {!currentTask.activeTask && (
-              <Button className="w-96" onClick={handleCreateTask}>
+              <Button
+                className="w-96"
+                onClick={handleCreateTask}
+                color="primary"
+              >
                 Começar
               </Button>
             )}

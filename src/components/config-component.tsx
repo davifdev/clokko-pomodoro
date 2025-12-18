@@ -33,7 +33,9 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
               <Input label="Foco" id="focus" />
               <Input label="Descanso curto" id="shortingResting" />
               <Input label="Descanso longo" id="longResting" />
-              <Button type="submit">Salvar</Button>
+              <Button type="submit" color="primary">
+                Salvar
+              </Button>
             </form>
           </div>
         </main>,
