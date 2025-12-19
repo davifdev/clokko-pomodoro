@@ -1,14 +1,12 @@
-import type { TaskStateModel } from '../models/taskStateModel';
+import { useTaskContext } from '../contexts/TaskContext/task-context';
+
 import { getCurrentCycle } from '../utils/getCurrentCycle';
 
 import { getCycleType } from '../utils/getCycleType';
 
-interface CurrentCycleProps {
-  currentTask: TaskStateModel;
-}
-
-const Cycles = ({ currentTask }: CurrentCycleProps) => {
-  const arrCycles = Array.from({ length: currentTask.currentCycle });
+const Cycles = () => {
+  const { taskState } = useTaskContext();
+  const arrCycles = Array.from({ length: taskState.currentCycle });
 
   const CyclesColors = {
     working: 'bg-green-300',

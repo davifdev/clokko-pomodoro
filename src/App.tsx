@@ -1,11 +1,14 @@
 import MessageContainer from './components/message-container';
+import { TaskContextProvider } from './contexts/TaskContext/task-context-provider';
 import MainRouter from './routes/main-router';
 
 const App = () => {
   return (
-    <MessageContainer>
-      <MainRouter />
-    </MessageContainer>
+    <TaskContextProvider>
+      <MessageContainer>
+        <MainRouter />
+      </MessageContainer>
+    </TaskContextProvider>
   );
 };
 

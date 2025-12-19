@@ -10,7 +10,7 @@ const History = () => {
           <h2 className="text-2xl font-semibold text-sky-500 dark:text-slate-100">
             Histórico
           </h2>
-          <Button className="text-sm">
+          <Button className="text-sm" color="primary">
             Limpar Histórico
             <Trash2Icon size={18} />
           </Button>
