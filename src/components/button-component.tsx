@@ -14,7 +14,7 @@ const button = tv({
       primary:
         'bg-sky-500 hover:bg-sky-600 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100',
       secondary: 'bg-red-500 hover:bg-red-600',
-      icon: 'bg-transparent hover:bg-slate-200 dark:hover:bg-slate-800',
+      icon: 'bg-transparent hover:bg-slate-200 dark:hover:bg-slate-800 shadow-none',
     },
   },
 });

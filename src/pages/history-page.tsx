@@ -1,4 +1,7 @@
+// Libs
 import { Trash2Icon } from 'lucide-react';
+
+// Components
 import Container from '../components/container';
 import Button from '../components/button-component';
 

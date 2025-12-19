@@ -1,6 +1,6 @@
+// Utils
 import type { TaskStateModel } from '../../models/taskStateModel';
 import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
-
 import { getCurrentCycle } from '../../utils/getCurrentCycle';
 import { ActionsTypes, type TaskActions } from './action-types';
 

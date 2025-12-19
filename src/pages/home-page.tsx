@@ -1,16 +1,20 @@
-import { useRef, type MouseEvent } from 'react';
+// Libs
+import { toast } from 'react-toastify';
+
+// Components
 import Button from '../components/button-component';
 import Container from '../components/container';
 import Input from '../components/input-component';
-import type { TaskModel } from '../models/taskModel';
+import Timer from '../components/timer-component';
+import Cycles from '../components/cycles-component-';
+import CycleName from '../components/cycle-name-component';
 
+// Utils
+import type { TaskModel } from '../models/taskModel';
+import { useRef, type MouseEvent } from 'react';
 import { getCurrentCycle } from '../utils/getCurrentCycle';
 import { getCycleType } from '../utils/getCycleType';
-
-import Cycles from '../components/cycles-component-';
-import { toast } from 'react-toastify';
 import { useTaskContext } from '../contexts/TaskContext/task-context';
-import Timer from '../components/timer-component';
 import { ActionsTypes } from '../contexts/TaskContext/action-types';
 
 const Home = () => {
@@ -57,15 +61,9 @@ const Home = () => {
       <Container>
         <div className="flex flex-col items-center justify-center gap-10 pt-40">
           <div className="flex items-center gap-12">
-            <p className="text-lg font-semibold text-sky-500 dark:text-slate-100">
-              Pomodoro
-            </p>
-            <p className="text-lg font-semibold text-sky-500 dark:text-slate-100">
-              Descanso
-            </p>
-            <p className="text-lg font-semibold text-sky-500 dark:text-slate-100">
-              Descanso Longo
-            </p>
+            <CycleName>Pomodoro</CycleName>
+            <CycleName>Descanso</CycleName>
+            <CycleName>Descanso Longo</CycleName>
           </div>
           <div className="flex h-96 w-96 items-center justify-center rounded-full border-4 border-slate-200 bg-zinc-50 p-2 shadow-md dark:border-slate-800 dark:bg-slate-900">
             <Timer />

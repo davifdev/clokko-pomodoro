@@ -1,9 +1,15 @@
-import { Link } from 'react-router-dom';
-import Container from './container';
+// Libs
 import { MoonIcon, SettingsIcon, SunIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import Config from './config-component';
+import { Link } from 'react-router-dom';
 import RouterLink from './router-link';
+
+// Components
+import Container from './container';
+import Config from './config-component';
+
+// Utils
+import { useEffect, useState } from 'react';
+import Button from './button-component';
 
 type ThemeType = 'light' | 'dark';
 
@@ -54,14 +60,16 @@ const Header = () => {
                 <RouterLink href="/about" text="Sobre" />
               </li>
             </ul>
-            <div className="flex items-center gap-4">
-              <button onClick={toggleConfig}>
+            <div className="flex items-center">
+              <Button onClick={toggleConfig} color="icon">
                 <SettingsIcon
                   className="text-sky-500 dark:text-slate-100"
                   size={18}
                 />
-              </button>
-              <button onClick={toggleTheme}>{toggleIcon[theme]}</button>
+              </Button>
+              <Button onClick={toggleTheme} color="icon">
+                {toggleIcon[theme]}
+              </Button>
             </div>
           </nav>
         </div>

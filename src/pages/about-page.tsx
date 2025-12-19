@@ -1,4 +1,7 @@
+// Libs
 import { Link } from 'react-router-dom';
+
+// Components
 import Container from '../components/container';
 
 const About = () => {
