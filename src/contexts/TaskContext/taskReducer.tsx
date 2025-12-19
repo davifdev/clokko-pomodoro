@@ -2,11 +2,11 @@ import type { TaskStateModel } from '../../models/taskStateModel';
 import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
 
 import { getCurrentCycle } from '../../utils/getCurrentCycle';
+import { ActionsTypes, type TaskActions } from './action-types';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const taskReducer = (state: TaskStateModel, action: any) => {
+export const taskReducer = (state: TaskStateModel, action: TaskActions) => {
   switch (action.type) {
-    case 'createTask': {
+    case ActionsTypes.CREATE_TASK: {
       const newTask = action.payload;
       const secondsRemaining = newTask.durationInMinutes * 60;
       const currentCycle = getCurrentCycle(state.currentCycle);
@@ -21,7 +21,7 @@ export const taskReducer = (state: TaskStateModel, action: any) => {
         config: { ...state.config },
       };
     }
-    case 'interruptTask': {
+    case ActionsTypes.INTERRUPT_TASK: {
       return {
         ...state,
         activeTask: null,

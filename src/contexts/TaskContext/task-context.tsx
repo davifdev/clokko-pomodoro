@@ -1,11 +1,11 @@
 import { createContext, useContext, type ActionDispatch } from 'react';
 import type { TaskStateModel } from '../../models/taskStateModel';
 import { initialTaskStateValue } from './initialState';
+import type { TaskActions } from './action-types';
 
 interface TaskContextProps {
   taskState: TaskStateModel;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  dispatch: ActionDispatch<[action: any]>;
+  dispatch: ActionDispatch<[action: TaskActions]>;
 }
 
 export const TaskContext = createContext<TaskContextProps>({

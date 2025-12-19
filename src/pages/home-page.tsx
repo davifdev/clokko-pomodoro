@@ -11,6 +11,7 @@ import Cycles from '../components/cycles-component-';
 import { toast } from 'react-toastify';
 import { useTaskContext } from '../contexts/TaskContext/task-context';
 import Timer from '../components/timer-component';
+import { ActionsTypes } from '../contexts/TaskContext/action-types';
 
 const Home = () => {
   const { taskState, dispatch } = useTaskContext();
@@ -41,14 +42,14 @@ const Home = () => {
     };
 
     dispatch({
-      type: 'createTask',
+      type: ActionsTypes.CREATE_TASK,
       payload: newTask,
     });
   };
 
   const handleInterruptTask = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch({ type: 'interruptTask' });
+    dispatch({ type: ActionsTypes.INTERRUPT_TASK });
   };
 
   return (
