@@ -8,6 +8,7 @@ import Input from '../components/input-component';
 import Timer from '../components/timer-component';
 import Cycles from '../components/cycles-component-';
 import CycleName from '../components/cycle-name-component';
+import Tips from '../components/tips-component';
 
 // Utils
 import type { TaskModel } from '../models/taskModel';
@@ -20,7 +21,6 @@ import { ActionsTypes } from '../contexts/TaskContext/action-types';
 const Home = () => {
   const { taskState, dispatch } = useTaskContext();
   const inputRef = useRef<HTMLInputElement | null>(null);
-
   const currentCycle = getCurrentCycle(taskState.currentCycle);
   const cycleType = getCycleType(currentCycle);
   console.log(currentCycle, cycleType);
@@ -65,8 +65,9 @@ const Home = () => {
             <CycleName>Descanso</CycleName>
             <CycleName>Descanso Longo</CycleName>
           </div>
-          <div className="flex h-96 w-96 items-center justify-center rounded-full border-4 border-slate-200 bg-zinc-50 p-2 shadow-md dark:border-slate-800 dark:bg-slate-900">
+          <div className="flex h-96 w-96 flex-col items-center justify-center gap-8 rounded-full border-4 border-slate-200 bg-zinc-50 p-2 shadow-md dark:border-slate-800 dark:bg-slate-900">
             <Timer />
+            <Tips cycleType={cycleType} />
           </div>
           <div className="flex flex-col items-center justify-center gap-10">
             <div className="flex items-center gap-2">

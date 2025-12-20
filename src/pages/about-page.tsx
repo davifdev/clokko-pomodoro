@@ -57,7 +57,7 @@ const About = () => {
           </ul>
 
           <h2 className="mb-6 text-2xl font-semibold dark:text-slate-100">
-            Mas no <strong>Chronos Pomodoro</strong> tem um diferencial 🚀
+            Mas no <strong>Clokko Pomodoro</strong> tem um diferencial 🚀
           </h2>
 
           <p className="mb-6 dark:text-slate-100">
@@ -136,7 +136,7 @@ const About = () => {
           </p>
 
           <h2 className="mb-6 text-2xl font-semibold dark:text-slate-100">
-            Por que usar o Chronos Pomodoro?
+            Por que usar o Clokko Pomodoro?
           </h2>
           <ul className="mb-6">
             <li className="dark:text-slate-100">
