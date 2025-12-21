@@ -37,6 +37,31 @@ export const taskReducer = (state: TaskStateModel, action: TaskActions) => {
         }),
       };
     }
+    case ActionsTypes.COMPLETE_TASK: {
+      return {
+        ...state,
+        activeTask: null,
+        formattedSecondsRemaining: '00:00',
+        tasks: state.tasks.map((task) => {
+          if (state.activeTask && task.id === state.activeTask?.id) {
+            return {
+              ...task,
+              completedDate: Date.now(),
+            };
+          }
+          return task;
+        }),
+      };
+    }
+    case ActionsTypes.COUNT_DOWN: {
+      return {
+        ...state,
+        secondsRemaining: action.payload.secondsRemaining,
+        formattedSecondsRemaining: formatSecondsToMinutes(
+          action.payload.secondsRemaining
+        ),
+      };
+    }
     default:
       return state;
   }
