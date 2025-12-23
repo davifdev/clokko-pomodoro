@@ -15,7 +15,7 @@ const History = () => {
   const [sortTasksOptions, setSortTasksOptions] = useState<SortTaskOptions>(
     () => {
       return {
-        tasks: sortTasks({ tasks: taskState.tasks }),
+        tasks: taskState.tasks,
         field: 'startDate',
         direction: 'desc',
       };
@@ -39,8 +39,8 @@ const History = () => {
 
     setSortTasksOptions({
       tasks: sortTasks({
-        direction: newDirection,
         tasks: sortTasksOptions.tasks,
+        direction: newDirection,
         field,
       }),
       direction: newDirection,

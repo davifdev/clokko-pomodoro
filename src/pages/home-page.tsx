@@ -23,7 +23,6 @@ const Home = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const currentCycle = getCurrentCycle(taskState.currentCycle);
   const cycleType = getCycleType(currentCycle);
-  console.log(currentCycle, cycleType);
 
   const handleCreateTask = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -73,7 +72,12 @@ const Home = () => {
             <div className="flex items-center gap-2">
               <Cycles />
             </div>
-            <Input type="text" placeholder="Digite uma tarefa" ref={inputRef} />
+            <Input
+              type="text"
+              placeholder="Digite uma tarefa"
+              ref={inputRef}
+              defaultValue={taskState.activeTask?.name}
+            />
 
             {taskState.activeTask && (
               <Button

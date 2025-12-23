@@ -11,10 +11,11 @@ export const sortTasks = ({
   direction = 'desc',
   tasks = [],
 }: SortTaskOptions) => {
-  console.log(field, direction, tasks);
   return [...tasks].sort((a, b) => {
     const aValue = a[field];
     const bValue = b[field];
+
+    console.log(aValue, bValue);
 
     if (aValue === null && bValue === null) return 0;
     if (aValue === null) return 1;

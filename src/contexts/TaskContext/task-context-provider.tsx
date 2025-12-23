@@ -31,7 +31,6 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
   worker.onmessage((e) => {
     const countDownSeconds = e.data;
     if (countDownSeconds <= 0) {
-      console.log('Completou');
       dispatch({ type: ActionsTypes.COMPLETE_TASK });
       worker.terminate();
     } else {
@@ -48,6 +47,7 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
       return;
     }
 
+    document.title = `${taskState.formattedSecondsRemaining} - Clokko Pomodoro`;
     worker.postMessage(taskState);
   }, [taskState, worker]);
 

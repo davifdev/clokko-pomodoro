@@ -2,7 +2,6 @@ import { useTaskContext } from '../contexts/TaskContext/task-context';
 import { formatDate } from '../utils/formatDate';
 import { getTaskStatus } from '../utils/getTaskStatus';
 import type { SortTaskOptions } from '../utils/sortTasks';
-
 interface TableComponentProps {
   handleSortTasks: ({ field }: Pick<SortTaskOptions, 'field'>) => void;
   sortTasksOptions: SortTaskOptions;

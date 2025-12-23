@@ -1,18 +1,35 @@
 import { createPortal } from 'react-dom';
 import Button from './button-component';
 import Input from './input-component';
-import type { FormEvent } from 'react';
+import { useRef, type FormEvent } from 'react';
+import { useTaskContext } from '../contexts/TaskContext/task-context';
+import { ActionsTypes } from '../contexts/TaskContext/action-types';
+import { toast } from 'react-toastify';
 interface ConfigProps {
   openConfig: boolean;
   toggleConfig: () => void;
 }
 
 const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
+  const { taskState, dispatch } = useTaskContext();
+  const workingRef = useRef<HTMLInputElement | null>(null);
+  const shortRestingRef = useRef<HTMLInputElement | null>(null);
+  const longRestingRef = useRef<HTMLInputElement | null>(null);
   if (!openConfig) return null;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const working = Number(workingRef.current?.value);
+    const shortResting = Number(shortRestingRef.current?.value);
+    const longResting = Number(longRestingRef.current?.value);
+
+    dispatch({
+      type: ActionsTypes.UPDATE_TASK,
+      payload: { working, shortResting, longResting },
+    });
+
     toggleConfig();
+    toast.success('Configurações salvas');
   };
 
   return (
@@ -30,9 +47,27 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
               Configurações
             </h2>
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-              <Input label="Foco" id="focus" />
-              <Input label="Descanso curto" id="shortingResting" />
-              <Input label="Descanso longo" id="longResting" />
+              <Input
+                label="Foco"
+                id="focus"
+                type="number"
+                ref={workingRef}
+                defaultValue={taskState.config.working}
+              />
+              <Input
+                label="Descanso curto"
+                id="shortingResting"
+                type="number"
+                ref={shortRestingRef}
+                defaultValue={taskState.config.shortResting}
+              />
+              <Input
+                label="Descanso longo"
+                id="longResting"
+                type="number"
+                ref={longRestingRef}
+                defaultValue={taskState.config.longResting}
+              />
               <Button type="submit" color="primary">
                 Salvar
               </Button>

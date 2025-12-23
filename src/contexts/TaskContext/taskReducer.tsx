@@ -62,6 +62,12 @@ export const taskReducer = (state: TaskStateModel, action: TaskActions) => {
         ),
       };
     }
+    case ActionsTypes.UPDATE_TASK: {
+      return {
+        ...state,
+        config: { ...action.payload },
+      };
+    }
     default:
       return state;
   }
