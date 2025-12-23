@@ -51,21 +51,29 @@ const History = () => {
   return (
     <main className="p-40">
       <Container>
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold text-sky-500 dark:text-slate-100">
-            Histórico
-          </h2>
-          <Button className="text-sm" color="primary">
-            Limpar Histórico
-            <Trash2Icon size={18} />
-          </Button>
-        </div>
-        <div className="mt-6 overflow-hidden rounded-md">
-          <TableComponent
-            handleSortTasks={handleSortTasks}
-            sortTasksOptions={sortTasksOptions}
-          />
-        </div>
+        {taskState.tasks.length ? (
+          <>
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-semibold text-sky-500 dark:text-slate-100">
+                Histórico
+              </h2>
+              <Button className="text-sm" color="primary">
+                Limpar Histórico
+                <Trash2Icon size={18} />
+              </Button>
+            </div>
+            <div className="mt-6 overflow-hidden rounded-md">
+              <TableComponent
+                handleSortTasks={handleSortTasks}
+                sortTasksOptions={sortTasksOptions}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="text-center">Nenhuma tarefa foi encontrada!</p>
+          </>
+        )}
       </Container>
     </main>
   );
