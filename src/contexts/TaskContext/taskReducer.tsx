@@ -46,7 +46,7 @@ export const taskReducer = (state: TaskStateModel, action: TaskActions) => {
           if (state.activeTask && task.id === state.activeTask?.id) {
             return {
               ...task,
-              completedDate: Date.now(),
+              completeDate: Date.now(),
             };
           }
           return task;

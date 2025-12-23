@@ -5,24 +5,36 @@ import { TaskContext } from './task-context';
 import { taskReducer } from './taskReducer';
 import { ActionsTypes } from './action-types';
 import { TimerWorkerManager } from '../../workers/timerWorkerManager';
+import type { TaskStateModel } from '../../models/taskStateModel';
 interface TaskContextProviderProps {
   children: ReactNode;
 }
 
 export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
-  const [taskState, dispatch] = useReducer(taskReducer, initialTaskStateValue);
+  const [taskState, dispatch] = useReducer(
+    taskReducer,
+    initialTaskStateValue,
+    () => {
+      const tasks = JSON.parse(
+        localStorage.getItem('tasks')!
+      ) as TaskStateModel;
+      return tasks || initialTaskStateValue;
+    }
+  );
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(taskState));
+  }, [taskState]);
 
   const worker = TimerWorkerManager.getInstance();
 
   worker.onmessage((e) => {
     const countDownSeconds = e.data;
     if (countDownSeconds <= 0) {
-      console.log('Task completed!');
-
+      console.log('Completou');
       dispatch({ type: ActionsTypes.COMPLETE_TASK });
       worker.terminate();
     } else {
-      console.log('Task in progress: ', countDownSeconds);
       dispatch({
         type: ActionsTypes.COUNT_DOWN,
         payload: { secondsRemaining: countDownSeconds },
@@ -32,7 +44,6 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
 
   useEffect(() => {
     if (!taskState.activeTask) {
-      console.log('No active task, terminating worker.');
       worker.terminate();
       return;
     }
