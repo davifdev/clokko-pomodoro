@@ -9,9 +9,10 @@ import { useTaskContext } from '../contexts/TaskContext/task-context';
 import TableComponent from '../components/table-component';
 import { useEffect, useState } from 'react';
 import { sortTasks, type SortTaskOptions } from '../utils/sortTasks';
+import { ActionsTypes } from '../contexts/TaskContext/action-types';
 
 const History = () => {
-  const { taskState } = useTaskContext();
+  const { taskState, dispatch } = useTaskContext();
   const [sortTasksOptions, setSortTasksOptions] = useState<SortTaskOptions>(
     () => {
       return {
@@ -21,6 +22,7 @@ const History = () => {
       };
     }
   );
+  const [confirmClearHistory, setConfirmClearHistory] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -48,6 +50,19 @@ const History = () => {
     });
   };
 
+  useEffect(() => {
+    if (!confirmClearHistory) return;
+
+    if (confirm('Tem certeza que deseja limar seu histórico ?')) {
+      dispatch({ type: ActionsTypes.RESET_TASK });
+      return;
+    }
+  }, [confirmClearHistory, dispatch]);
+
+  const onResetHistory = () => {
+    setConfirmClearHistory(true);
+  };
+
   return (
     <main className="p-40">
       <Container>
@@ -57,7 +72,11 @@ const History = () => {
               <h2 className="text-2xl font-semibold text-sky-500 dark:text-slate-100">
                 Histórico
               </h2>
-              <Button className="text-sm" color="primary">
+              <Button
+                className="text-sm"
+                color="primary"
+                onClick={onResetHistory}
+              >
                 Limpar Histórico
                 <Trash2Icon size={18} />
               </Button>

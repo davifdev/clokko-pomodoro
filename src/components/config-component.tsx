@@ -12,13 +12,16 @@ interface ConfigProps {
 
 const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
   const { taskState, dispatch } = useTaskContext();
+
   const workingRef = useRef<HTMLInputElement | null>(null);
   const shortRestingRef = useRef<HTMLInputElement | null>(null);
   const longRestingRef = useRef<HTMLInputElement | null>(null);
+
   if (!openConfig) return null;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const working = Number(workingRef.current?.value);
     const shortResting = Number(shortRestingRef.current?.value);
     const longResting = Number(longRestingRef.current?.value);

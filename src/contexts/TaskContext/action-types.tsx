@@ -7,6 +7,7 @@ export enum ActionsTypes {
   COMPLETE_TASK = 'completeTask',
   COUNT_DOWN = 'countDown',
   UPDATE_TASK = 'updateTask',
+  RESET_TASK = 'resetTask',
 }
 
 type TaskActionWithPayload =
@@ -26,6 +27,9 @@ type TaskActionWithoutPayload =
     }
   | {
       type: ActionsTypes.COMPLETE_TASK;
+    }
+  | {
+      type: ActionsTypes.RESET_TASK;
     };
 
 export type TaskActions = TaskActionWithPayload | TaskActionWithoutPayload;

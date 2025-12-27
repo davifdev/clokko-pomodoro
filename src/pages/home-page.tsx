@@ -1,6 +1,3 @@
-// Libs
-import { toast } from 'react-toastify';
-
 // Components
 import Button from '../components/button-component';
 import Container from '../components/container';
@@ -17,6 +14,7 @@ import { getCurrentCycle } from '../utils/getCurrentCycle';
 import { getCycleType } from '../utils/getCycleType';
 import { useTaskContext } from '../contexts/TaskContext/task-context';
 import { ActionsTypes } from '../contexts/TaskContext/action-types';
+import { showMessage } from '../adapters/showMessage';
 
 const Home = () => {
   const { taskState, dispatch } = useTaskContext();
@@ -26,11 +24,12 @@ const Home = () => {
 
   const handleCreateTask = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    showMessage.dismiss();
 
     if (!inputRef.current) return;
 
     if (!inputRef.current.value.trim()) {
-      toast.error('Por favor, insira uma tarefa válida.');
+      showMessage.error('Por favor, insira uma tarefa válida.');
       return;
     }
 
@@ -52,7 +51,10 @@ const Home = () => {
 
   const handleInterruptTask = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    showMessage.dismiss();
+
     dispatch({ type: ActionsTypes.INTERRUPT_TASK });
+    showMessage.error('Tarefa interrompida');
   };
 
   return (

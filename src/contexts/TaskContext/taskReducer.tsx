@@ -3,6 +3,7 @@ import type { TaskStateModel } from '../../models/taskStateModel';
 import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
 import { getCurrentCycle } from '../../utils/getCurrentCycle';
 import { ActionsTypes, type TaskActions } from './action-types';
+import { initialTaskStateValue } from './initialState';
 
 export const taskReducer = (state: TaskStateModel, action: TaskActions) => {
   switch (action.type) {
@@ -67,6 +68,9 @@ export const taskReducer = (state: TaskStateModel, action: TaskActions) => {
         ...state,
         config: { ...action.payload },
       };
+    }
+    case ActionsTypes.RESET_TASK: {
+      return { ...initialTaskStateValue };
     }
     default:
       return state;
