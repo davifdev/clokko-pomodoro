@@ -10,6 +10,7 @@ import TableComponent from '../components/table-component';
 import { useEffect, useState } from 'react';
 import { sortTasks, type SortTaskOptions } from '../utils/sortTasks';
 import { ActionsTypes } from '../contexts/TaskContext/action-types';
+import { showMessage } from '../adapters/showMessage';
 
 const History = () => {
   const { taskState, dispatch } = useTaskContext();
@@ -25,7 +26,7 @@ const History = () => {
   const [confirmClearHistory, setConfirmClearHistory] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+     
     setSortTasksOptions((prevTask) => ({
       ...prevTask,
       tasks: sortTasks({
@@ -53,14 +54,18 @@ const History = () => {
   useEffect(() => {
     if (!confirmClearHistory) return;
 
-    if (confirm('Tem certeza que deseja limar seu histórico ?')) {
-      dispatch({ type: ActionsTypes.RESET_TASK });
-      return;
-    }
+    setConfirmClearHistory(false);
+    dispatch({ type: ActionsTypes.RESET_TASK });
   }, [confirmClearHistory, dispatch]);
 
   const onResetHistory = () => {
-    setConfirmClearHistory(true);
+    showMessage.dismiss();
+    showMessage.confirm(
+      'Tem certeza que deseja limpar o seu histórico ?',
+      (confirmation) => {
+        setConfirmClearHistory(confirmation);
+      }
+    );
   };
 
   return (
