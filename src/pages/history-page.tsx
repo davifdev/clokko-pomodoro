@@ -26,7 +26,6 @@ const History = () => {
   const [confirmClearHistory, setConfirmClearHistory] = useState(false);
 
   useEffect(() => {
-     
     setSortTasksOptions((prevTask) => ({
       ...prevTask,
       tasks: sortTasks({

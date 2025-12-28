@@ -12,6 +12,7 @@ export const showMessage = {
       data,
       autoClose: false,
       closeOnClick: false,
+      closeButton: false,
       draggable: false,
       onClose: (confirmation) => {
         if (confirmation) return onClosing(true);
