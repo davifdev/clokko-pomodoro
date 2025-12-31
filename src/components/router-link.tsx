@@ -11,8 +11,8 @@ const RouterLink = ({ href, text }: RouterLinkProps) => {
       to={href}
       className={({ isActive }) =>
         isActive
-          ? 'text-sky-600 dark:text-slate-300'
-          : 'text-sky-500 dark:text-slate-100'
+          ? 'text-blue-400 dark:text-slate-300'
+          : 'text-blue-300 dark:text-slate-100'
       }
     >
       <strong>{text}</strong>

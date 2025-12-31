@@ -46,7 +46,7 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
             className="relative z-50 w-80 rounded-md bg-white p-6 shadow-lg dark:bg-slate-900"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="mb-4 text-center text-lg font-semibold text-sky-500 dark:text-slate-100">
+            <h2 className="mb-4 text-center text-lg font-semibold text-blue-300 dark:text-slate-100">
               Configurações
             </h2>
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>

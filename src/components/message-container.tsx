@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { Bounce, ToastContainer } from 'react-toastify';
 
 const MessageContainer = ({ children }: { children: ReactNode }) => {
@@ -15,7 +15,7 @@ const MessageContainer = ({ children }: { children: ReactNode }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="dark"
         transition={Bounce}
       />
     </>

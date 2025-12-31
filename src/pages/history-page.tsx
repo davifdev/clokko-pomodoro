@@ -73,7 +73,7 @@ const History = () => {
         {taskState.tasks.length ? (
           <>
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold text-sky-500 dark:text-slate-100">
+              <h2 className="text-2xl font-semibold text-blue-300 dark:text-slate-100">
                 Histórico
               </h2>
               <Button

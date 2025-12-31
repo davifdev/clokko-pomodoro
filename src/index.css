@@ -12,3 +12,13 @@ body {
 button {
   cursor: pointer;
 }
+
+:root[data-theme='dark'] {
+  --toastify-color-dark: #1d293d;
+  --toastify-text-color-dark: #fff;
+}
+
+:root[data-theme='light'] {
+  --toastify-color-dark: #fff;
+  --toastify-text-color-dark: #1d293d;
+}

@@ -47,6 +47,8 @@ const Home = () => {
       type: ActionsTypes.CREATE_TASK,
       payload: newTask,
     });
+
+    showMessage.success('Tarefa iniciada com sucesso');
   };
 
   const handleInterruptTask = (e: MouseEvent<HTMLButtonElement>) => {
