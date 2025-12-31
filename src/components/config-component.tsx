@@ -1,30 +1,63 @@
 import { createPortal } from 'react-dom';
 import Button from './button-component';
 import Input from './input-component';
-import { useRef, type FormEvent } from 'react';
+
 import { useTaskContext } from '../contexts/TaskContext/task-context';
 import { ActionsTypes } from '../contexts/TaskContext/action-types';
 import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import type z from 'zod';
+import { configSchema } from '../schemas/config.schema';
+import { zodResolver } from '@hookform/resolvers/zod';
 interface ConfigProps {
   openConfig: boolean;
   toggleConfig: () => void;
 }
 
+type configForm = z.infer<typeof configSchema>;
+
 const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
   const { taskState, dispatch } = useTaskContext();
-
-  const workingRef = useRef<HTMLInputElement | null>(null);
-  const shortRestingRef = useRef<HTMLInputElement | null>(null);
-  const longRestingRef = useRef<HTMLInputElement | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm<configForm>({
+    resolver: zodResolver(configSchema),
+    defaultValues: {
+      focus: '25',
+      shortResting: '5',
+      longResting: '15',
+    },
+  });
 
   if (!openConfig) return null;
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = (data: configForm) => {
+    console.log(data);
+    const working = Number(data.focus);
+    const shortResting = Number(data.shortResting);
+    const longResting = Number(data.longResting);
 
-    const working = Number(workingRef.current?.value);
-    const shortResting = Number(shortRestingRef.current?.value);
-    const longResting = Number(longRestingRef.current?.value);
+    if (working > 99) {
+      setError('focus', { message: 'Digite um valor entre 1 e 99 para foco' });
+      return;
+    }
+
+    if (shortResting > 30) {
+      setError('shortResting', {
+        message: 'Digite um valor entre 1 e 30 para descanso curto',
+      });
+      return;
+    }
+
+    if (longResting > 60) {
+      setError('longResting', {
+        message: 'Digite um valor entre 1 e 60 para descanso longo',
+      });
+      return;
+    }
 
     dispatch({
       type: ActionsTypes.UPDATE_TASK,
@@ -35,6 +68,7 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
     toast.success('Configurações salvas');
   };
 
+  console.log(errors);
   return (
     <>
       {createPortal(
@@ -49,27 +83,33 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
             <h2 className="mb-4 text-center text-lg font-semibold text-blue-300 dark:text-slate-100">
               Configurações
             </h2>
-            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+            <form
+              className="flex flex-col gap-4"
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <Input
                 label="Foco"
                 id="focus"
                 type="number"
-                ref={workingRef}
+                {...register('focus')}
                 defaultValue={taskState.config.working}
+                errorMessage={errors.focus?.message}
               />
               <Input
                 label="Descanso curto"
                 id="shortingResting"
                 type="number"
-                ref={shortRestingRef}
+                {...register('shortResting')}
                 defaultValue={taskState.config.shortResting}
+                errorMessage={errors.shortResting?.message}
               />
               <Input
                 label="Descanso longo"
                 id="longResting"
                 type="number"
-                ref={longRestingRef}
+                {...register('longResting')}
                 defaultValue={taskState.config.longResting}
+                errorMessage={errors.longResting?.message}
               />
               <Button type="submit" color="primary">
                 Salvar

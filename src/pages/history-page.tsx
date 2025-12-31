@@ -80,6 +80,8 @@ const History = () => {
                 className="text-sm"
                 color="primary"
                 onClick={onResetHistory}
+                title="Limpar Tarefas"
+                aria-label="Limpar Tarefas"
               >
                 Limpar Histórico
                 <Trash2Icon size={18} />

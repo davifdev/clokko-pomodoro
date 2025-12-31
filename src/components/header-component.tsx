@@ -61,13 +61,23 @@ const Header = () => {
               </li>
             </ul>
             <div className="flex items-center">
-              <Button onClick={toggleConfig} color="icon">
+              <Button
+                onClick={toggleConfig}
+                color="icon"
+                title="Configurações"
+                aria-label="Configurações"
+              >
                 <SettingsIcon
                   className="text-blue-300 dark:text-slate-100"
                   size={18}
                 />
               </Button>
-              <Button onClick={toggleTheme} color="icon">
+              <Button
+                onClick={toggleTheme}
+                color="icon"
+                title={`Tema ${theme === 'light' ? 'Escuro' : 'Claro'}`}
+                aria-label={`Tema ${theme === 'light' ? 'Escuro' : 'Claro'}`}
+              >
                 {toggleIcon[theme]}
               </Button>
             </div>

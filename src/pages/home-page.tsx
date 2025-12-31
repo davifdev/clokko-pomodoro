@@ -88,6 +88,8 @@ const Home = () => {
                 className="w-96"
                 onClick={handleInterruptTask}
                 color="secondary"
+                title="Interromper Tarefa"
+                aria-label="Interromper Tarefa"
               >
                 Cancelar
               </Button>
@@ -97,6 +99,8 @@ const Home = () => {
                 className="w-96"
                 onClick={handleCreateTask}
                 color="primary"
+                title="Iniciar Tarefa"
+                aria-label="Iniciar Tarefa"
               >
                 Começar
               </Button>
