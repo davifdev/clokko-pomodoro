@@ -53,6 +53,8 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
       return;
     }
 
+    document.title = `${taskState.formattedSecondsRemaining} - Clokko Pomodoro`;
+
     worker.postMessage(taskState);
   }, [taskState, worker]);
 

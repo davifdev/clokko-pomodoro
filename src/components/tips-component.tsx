@@ -1,3 +1,4 @@
+// Utils
 import { useTaskContext } from '../contexts/TaskContext/task-context';
 
 interface TipsProps {
@@ -9,12 +10,12 @@ const Tips = ({ cycleType }: TipsProps) => {
 
   const TipsMessageActive = {
     working: (
-      <p className="text-blue-300">
+      <p className="text-blue-300 dark:text-slate-100">
         Foque por <strong>{taskState.config.working} min!</strong>
       </p>
     ),
     shortResting: (
-      <p className="text-blue-300">
+      <p className="text-blue-300 dark:text-slate-100">
         Descanse por <strong>{taskState.config.shortResting} min!</strong>
       </p>
     ),

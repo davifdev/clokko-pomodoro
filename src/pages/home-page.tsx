@@ -21,6 +21,7 @@ const Home = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const currentCycle = getCurrentCycle(taskState.currentCycle);
   const cycleType = getCycleType(currentCycle);
+  const lastTaskName = taskState.tasks[taskState.tasks.length - 1]?.name || '';
 
   const handleCreateTask = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -80,7 +81,7 @@ const Home = () => {
               type="text"
               placeholder="Digite uma tarefa"
               ref={inputRef}
-              defaultValue={taskState.activeTask?.name}
+              defaultValue={lastTaskName}
             />
 
             {taskState.activeTask && (

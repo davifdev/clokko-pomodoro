@@ -1,5 +1,8 @@
+// Utils
 import type { ComponentProps } from 'react';
-import InputErrorMessage from './input-error-message';
+
+// Components
+import InputErrorMessage from './input-error-message.component';
 interface InputProps extends ComponentProps<'input'> {
   className?: string;
   label?: string;

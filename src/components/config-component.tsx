@@ -1,14 +1,18 @@
+// Libs
 import { createPortal } from 'react-dom';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import type z from 'zod';
+
+// Components
 import Button from './button-component';
 import InputWrapper from './input-wrapper.component';
 
+// Utils
 import { useTaskContext } from '../contexts/TaskContext/task-context';
 import { ActionsTypes } from '../contexts/TaskContext/action-types';
-import { toast } from 'react-toastify';
-import { useForm } from 'react-hook-form';
 import { configSchema } from '../schemas/config.schema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import type z from 'zod';
 interface ConfigProps {
   openConfig: boolean;
   toggleConfig: () => void;

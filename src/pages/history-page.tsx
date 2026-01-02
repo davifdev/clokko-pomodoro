@@ -13,6 +13,10 @@ import { ActionsTypes } from '../contexts/TaskContext/action-types';
 import { showMessage } from '../adapters/showMessage';
 
 const History = () => {
+  useEffect(() => {
+    document.title = 'Histórico - Clokko Pomodoro';
+  }, []);
+
   const { taskState, dispatch } = useTaskContext();
   const [sortTasksOptions, setSortTasksOptions] = useState<SortTaskOptions>(
     () => {

@@ -1,7 +1,6 @@
+// Utils
 import { useTaskContext } from '../contexts/TaskContext/task-context';
-
 import { getCurrentCycle } from '../utils/getCurrentCycle';
-
 import { getCycleType } from '../utils/getCycleType';
 
 const Cycles = () => {

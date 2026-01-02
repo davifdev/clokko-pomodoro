@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 
 // Components
 import Container from '../components/container';
+import { useEffect } from 'react';
 
 const About = () => {
+  useEffect(() => {
+    document.title = 'Sobre - Clokko Pomodoro';
+  }, []);
+
   return (
     <main>
       <Container>

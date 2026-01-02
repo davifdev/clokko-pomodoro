@@ -1,6 +1,8 @@
+// Lib
 import { ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react';
-
 import type { ToastContentProps } from 'react-toastify';
+
+// Components
 import Button from './button-component';
 
 const Dialog = ({ closeToast, data }: ToastContentProps<string>) => {
