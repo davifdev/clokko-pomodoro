@@ -67,8 +67,12 @@ const History = () => {
     );
   };
 
+  useEffect(() => {
+    return () => showMessage.dismiss();
+  }, []);
+
   return (
-    <main className="p-40">
+    <main className="pt-20">
       <Container>
         {taskState.tasks.length ? (
           <>
@@ -87,7 +91,7 @@ const History = () => {
                 <Trash2Icon size={18} />
               </Button>
             </div>
-            <div className="mt-6 overflow-hidden rounded-md">
+            <div className="mt-6 w-full overflow-auto rounded-md">
               <TableComponent
                 handleSortTasks={handleSortTasks}
                 sortTasksOptions={sortTasksOptions}
@@ -96,7 +100,9 @@ const History = () => {
           </>
         ) : (
           <>
-            <p className="text-center">Nenhuma tarefa foi encontrada!</p>
+            <p className="text-center font-bold">
+              Nenhuma tarefa foi encontrada!
+            </p>
           </>
         )}
       </Container>

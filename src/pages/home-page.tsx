@@ -1,7 +1,7 @@
 // Components
 import Button from '../components/button-component';
 import Container from '../components/container';
-import Input from '../components/input-component';
+import InputWrapper from '../components/input-wrapper.component';
 import Timer from '../components/timer-component';
 import Cycles from '../components/cycles-component-';
 import CycleName from '../components/cycle-name-component';
@@ -62,7 +62,7 @@ const Home = () => {
   return (
     <main>
       <Container>
-        <div className="flex flex-col items-center justify-center gap-10 pt-40">
+        <div className="flex flex-col items-center justify-center gap-10 pt-20">
           <div className="flex items-center gap-12">
             <CycleName>Pomodoro</CycleName>
             <CycleName>Descanso</CycleName>
@@ -72,11 +72,11 @@ const Home = () => {
             <Timer />
             <Tips cycleType={cycleType} />
           </div>
-          <div className="flex flex-col items-center justify-center gap-10">
+          <div className="flex flex-col items-center justify-center gap-5">
             <div className="flex items-center gap-2">
               <Cycles />
             </div>
-            <Input
+            <InputWrapper
               type="text"
               placeholder="Digite uma tarefa"
               ref={inputRef}

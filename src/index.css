@@ -16,9 +16,35 @@ button {
 :root[data-theme='dark'] {
   --toastify-color-dark: #1d293d;
   --toastify-text-color-dark: #fff;
+  --track-scroll: #1d293d;
+  --thumb-scroll: #314158;
+  --thumb-hover: #31415894;
 }
 
 :root[data-theme='light'] {
   --toastify-color-dark: #fff;
   --toastify-text-color-dark: #1d293d;
+  --track-scroll: #fff;
+  --thumb-scroll: #dff2fe;
+  --thumb-hover: #cde7f8;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--track-scroll);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--thumb-scroll);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--thumb-hover);
 }

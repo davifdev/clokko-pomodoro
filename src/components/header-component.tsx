@@ -1,5 +1,5 @@
 // Libs
-import { MoonIcon, SettingsIcon, SunIcon } from 'lucide-react';
+import { MenuIcon, MoonIcon, SettingsIcon, SunIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RouterLink from './router-link';
 
@@ -19,6 +19,7 @@ const Header = () => {
     return savedTheme;
   });
   const [openConfig, setOpenConfig] = useState(false);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const toggleTheme = () => {
     console.log('Toggling theme');
@@ -39,8 +40,16 @@ const Header = () => {
     setOpenConfig(!openConfig);
   };
 
+  const openMenu = () => {
+    setIsOpenMenu(!isOpenMenu);
+  };
+
+  const handleMouseLeave = () => {
+    openMenu();
+  };
+
   return (
-    <header className="fixed z-10 w-full border-b-2 border-zinc-50 bg-white dark:border-slate-800 dark:bg-slate-900">
+    <header className="z-10 w-full border-b-2 border-zinc-50 bg-white dark:border-slate-800 dark:bg-slate-900">
       <Container>
         <div className="flex items-center justify-between p-6">
           <Link to="/">
@@ -49,14 +58,14 @@ const Header = () => {
             </h1>
           </Link>
           <nav className="flex items-center gap-10">
-            <ul className="flex items-center gap-4">
+            <ul className="hidden items-center gap-4 md:flex">
               <li>
                 <RouterLink href="/" text="Pomodoro" />
               </li>
               <li>
                 <RouterLink href="/history" text="Histórico" />
               </li>
-              <li className="text-blue-600">
+              <li>
                 <RouterLink href="/about" text="Sobre" />
               </li>
             </ul>
@@ -80,6 +89,34 @@ const Header = () => {
               >
                 {toggleIcon[theme]}
               </Button>
+              <Button
+                onClick={openMenu}
+                color="icon"
+                title="Menu"
+                aria-label="Menu"
+                className="block md:hidden"
+              >
+                <MenuIcon
+                  className="text-blue-300 dark:text-slate-100"
+                  size={18}
+                />
+              </Button>
+              <div
+                className={`absolute top-22 right-10 h-44 w-44 rounded-md bg-white p-6 shadow transition-all duration-300 dark:bg-slate-700 ${isOpenMenu ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+                onMouseLeave={handleMouseLeave}
+              >
+                <ul className="flex flex-col items-start gap-6">
+                  <li>
+                    <RouterLink href="/" text="Pomodoro" />
+                  </li>
+                  <li>
+                    <RouterLink href="/history" text="Histórico" />
+                  </li>
+                  <li>
+                    <RouterLink href="/about" text="Sobre" />
+                  </li>
+                </ul>
+              </div>
             </div>
           </nav>
         </div>

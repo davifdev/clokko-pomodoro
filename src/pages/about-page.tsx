@@ -8,7 +8,7 @@ const About = () => {
   return (
     <main>
       <Container>
-        <div className="pt-40">
+        <div className="pt-20">
           <h2 className="mb-6 text-2xl font-semibold dark:text-slate-100">
             A Técnica Pomodoro 🍅
           </h2>

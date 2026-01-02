@@ -1,20 +1,20 @@
 import { createPortal } from 'react-dom';
 import Button from './button-component';
-import Input from './input-component';
+import InputWrapper from './input-wrapper.component';
 
 import { useTaskContext } from '../contexts/TaskContext/task-context';
 import { ActionsTypes } from '../contexts/TaskContext/action-types';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
-import type z from 'zod';
 import { configSchema } from '../schemas/config.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import type z from 'zod';
 interface ConfigProps {
   openConfig: boolean;
   toggleConfig: () => void;
 }
 
-type configForm = z.infer<typeof configSchema>;
+type ConfigForm = z.infer<typeof configSchema>;
 
 const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
   const { taskState, dispatch } = useTaskContext();
@@ -23,7 +23,7 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<configForm>({
+  } = useForm<ConfigForm>({
     resolver: zodResolver(configSchema),
     defaultValues: {
       focus: '25',
@@ -34,8 +34,7 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
 
   if (!openConfig) return null;
 
-  const onSubmit = (data: configForm) => {
-    console.log(data);
+  const onSubmit = (data: ConfigForm) => {
     const working = Number(data.focus);
     const shortResting = Number(data.shortResting);
     const longResting = Number(data.longResting);
@@ -68,7 +67,6 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
     toast.success('Configurações salvas');
   };
 
-  console.log(errors);
   return (
     <>
       {createPortal(
@@ -87,7 +85,7 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
               className="flex flex-col gap-4"
               onSubmit={handleSubmit(onSubmit)}
             >
-              <Input
+              <InputWrapper
                 label="Foco"
                 id="focus"
                 type="number"
@@ -95,7 +93,7 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
                 defaultValue={taskState.config.working}
                 errorMessage={errors.focus?.message}
               />
-              <Input
+              <InputWrapper
                 label="Descanso curto"
                 id="shortingResting"
                 type="number"
@@ -103,7 +101,7 @@ const Config = ({ openConfig, toggleConfig }: ConfigProps) => {
                 defaultValue={taskState.config.shortResting}
                 errorMessage={errors.shortResting?.message}
               />
-              <Input
+              <InputWrapper
                 label="Descanso longo"
                 id="longResting"
                 type="number"

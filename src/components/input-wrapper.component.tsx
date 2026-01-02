@@ -6,7 +6,12 @@ interface InputProps extends ComponentProps<'input'> {
   errorMessage?: string;
 }
 
-const Input = ({ label, className, errorMessage, ...props }: InputProps) => {
+const InputWrapper = ({
+  label,
+  className,
+  errorMessage,
+  ...props
+}: InputProps) => {
   return (
     <div className="flex flex-col text-left">
       <label
@@ -24,4 +29,4 @@ const Input = ({ label, className, errorMessage, ...props }: InputProps) => {
   );
 };
 
-export default Input;
+export default InputWrapper;
