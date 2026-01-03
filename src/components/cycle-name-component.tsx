@@ -1,10 +1,16 @@
 import type { ReactNode } from 'react';
 
-const CycleName = ({ children }: { children: ReactNode }) => {
+interface CycleNameProps {
+  children: ReactNode;
+}
+
+const CycleName = ({ children }: CycleNameProps) => {
   return (
-    <p className="text-sm font-semibold text-blue-300 md:text-lg dark:text-slate-100">
+    <div
+      className={`h-7 text-sm font-semibold text-blue-300 md:text-lg dark:text-slate-100`}
+    >
       {children}
-    </p>
+    </div>
   );
 };
 

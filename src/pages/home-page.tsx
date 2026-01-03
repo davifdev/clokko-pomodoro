@@ -26,6 +26,7 @@ const Home = () => {
   const currentCycle = getCurrentCycle(taskState.currentCycle);
   const cycleType = getCycleType(currentCycle);
   const lastTaskName = taskState.tasks[taskState.tasks.length - 1]?.name || '';
+  const currentTask = taskState.activeTask?.type;
 
   const handleCreateTask = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -69,9 +70,39 @@ const Home = () => {
       <Container>
         <div className="flex flex-col items-center justify-center gap-10 pt-10 md:pt-20">
           <div className="flex items-center gap-12">
-            <CycleName>Pomodoro</CycleName>
-            <CycleName>Descanso</CycleName>
-            <CycleName>Descanso Longo</CycleName>
+            <CycleName>
+              <p
+                className={
+                  currentTask === 'working'
+                    ? 'border-b-2 border-blue-300 dark:border-slate-100'
+                    : ''
+                }
+              >
+                Pomodoro
+              </p>
+            </CycleName>
+            <CycleName>
+              <p
+                className={
+                  currentTask === 'shortResting'
+                    ? 'border-b-2 border-blue-300 dark:border-slate-100'
+                    : ''
+                }
+              >
+                Pomodoro
+              </p>
+            </CycleName>
+            <CycleName>
+              <p
+                className={
+                  currentTask === 'longResting'
+                    ? 'border-b-2 border-blue-300 dark:border-slate-100'
+                    : ''
+                }
+              >
+                Pomodoro
+              </p>
+            </CycleName>
           </div>
           <div className="flex h-80 w-full max-w-80 flex-col items-center justify-center gap-8 rounded-full border-4 border-slate-200 bg-zinc-50 p-2 shadow-md md:h-96 md:max-w-96 dark:border-slate-800 dark:bg-slate-900">
             <Timer />

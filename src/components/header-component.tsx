@@ -22,7 +22,6 @@ const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const toggleTheme = () => {
-    console.log('Toggling theme');
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 

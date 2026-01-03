@@ -15,8 +15,6 @@ export const sortTasks = ({
     const aValue = a[field];
     const bValue = b[field];
 
-    console.log(aValue, bValue);
-
     if (aValue === null && bValue === null) return 0;
     if (aValue === null) return 1;
     if (bValue === null) return -1;
