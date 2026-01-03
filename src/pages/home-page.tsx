@@ -9,7 +9,7 @@ import Tips from '../components/tips-component';
 
 // Utils
 import type { TaskModel } from '../models/taskModel';
-import { useRef, type MouseEvent } from 'react';
+import { useEffect, useRef, type MouseEvent } from 'react';
 import { getCurrentCycle } from '../utils/getCurrentCycle';
 import { getCycleType } from '../utils/getCycleType';
 import { useTaskContext } from '../contexts/TaskContext/task-context';
@@ -17,6 +17,10 @@ import { ActionsTypes } from '../contexts/TaskContext/action-types';
 import { showMessage } from '../adapters/showMessage';
 
 const Home = () => {
+  useEffect(() => {
+    document.title = 'Clokko Pomodoro ';
+  }, []);
+
   const { taskState, dispatch } = useTaskContext();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const currentCycle = getCurrentCycle(taskState.currentCycle);
