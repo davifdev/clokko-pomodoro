@@ -76,7 +76,7 @@ const History = () => {
   }, []);
 
   return (
-    <main className="pt-20">
+    <main className="pt-10 md:pt-20">
       <Container>
         {taskState.tasks.length ? (
           <>

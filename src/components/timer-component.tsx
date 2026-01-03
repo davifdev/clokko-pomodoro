@@ -6,7 +6,7 @@ const Timer = () => {
   console.log(taskState.formattedSecondsRemaining, taskState.secondsRemaining);
 
   return (
-    <p className="text-8xl font-bold text-blue-300 text-shadow-md dark:text-slate-100">
+    <p className="text-7xl font-bold text-blue-300 text-shadow-md md:text-8xl dark:text-slate-100">
       {taskState.formattedSecondsRemaining}
     </p>
   );

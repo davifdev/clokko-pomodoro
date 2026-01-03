@@ -67,13 +67,13 @@ const Home = () => {
   return (
     <main>
       <Container>
-        <div className="flex flex-col items-center justify-center gap-10 pt-20">
+        <div className="flex flex-col items-center justify-center gap-10 pt-10 md:pt-20">
           <div className="flex items-center gap-12">
             <CycleName>Pomodoro</CycleName>
             <CycleName>Descanso</CycleName>
             <CycleName>Descanso Longo</CycleName>
           </div>
-          <div className="flex h-96 w-96 flex-col items-center justify-center gap-8 rounded-full border-4 border-slate-200 bg-zinc-50 p-2 shadow-md dark:border-slate-800 dark:bg-slate-900">
+          <div className="flex h-80 w-full max-w-80 flex-col items-center justify-center gap-8 rounded-full border-4 border-slate-200 bg-zinc-50 p-2 shadow-md md:h-96 md:max-w-96 dark:border-slate-800 dark:bg-slate-900">
             <Timer />
             <Tips cycleType={cycleType} />
           </div>

@@ -29,22 +29,18 @@ button {
   --thumb-hover: #cde7f8;
 }
 
-/* width */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: var(--track-scroll);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--thumb-scroll);
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--thumb-hover);
 }
