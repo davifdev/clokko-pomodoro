@@ -8,9 +8,9 @@ const Cycles = () => {
   const arrCycles = Array.from({ length: taskState.currentCycle });
 
   const CyclesColors = {
-    working: 'bg-green-300',
-    shortResting: 'bg-red-300',
-    longResting: 'bg-yellow-300',
+    working: 'bg-green-500',
+    shortResting: 'bg-red-500',
+    longResting: 'bg-yellow-500',
   };
 
   const CyclesTranslate = {

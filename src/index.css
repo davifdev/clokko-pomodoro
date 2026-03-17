@@ -25,8 +25,8 @@ button {
   --toastify-color-dark: #fff;
   --toastify-text-color-dark: #1d293d;
   --track-scroll: #fff;
-  --thumb-scroll: #dff2fe;
-  --thumb-hover: #cde7f8;
+  --thumb-scroll: oklch(62.3% 0.214 259.815);
+  --thumb-hover: oklch(54.6% 0.245 262.881);
 }
 
 ::-webkit-scrollbar {

@@ -81,7 +81,7 @@ const History = () => {
         {taskState.tasks.length ? (
           <>
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold text-blue-300 dark:text-slate-100">
+              <h2 className="text-2xl font-semibold text-blue-500 dark:text-slate-100">
                 Histórico
               </h2>
               <Button
@@ -95,7 +95,7 @@ const History = () => {
                 <Trash2Icon size={18} />
               </Button>
             </div>
-            <div className="mt-6 w-full overflow-auto rounded-md">
+            <div className="mt-6 mb-6 w-full overflow-auto rounded-md">
               <TableComponent
                 handleSortTasks={handleSortTasks}
                 sortTasksOptions={sortTasksOptions}

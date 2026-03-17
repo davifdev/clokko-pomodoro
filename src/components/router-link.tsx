@@ -11,9 +11,7 @@ const RouterLink = ({ href, text }: RouterLinkProps) => {
     <NavLink
       to={href}
       className={({ isActive }) =>
-        isActive
-          ? 'text-blue-400 dark:text-slate-300'
-          : 'text-blue-300 dark:text-slate-100'
+        isActive ? 'dark:text-slate-80 opacity-70' : 'dark:text-slate-50'
       }
     >
       <strong>{text}</strong>

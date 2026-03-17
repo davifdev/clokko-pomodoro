@@ -12,9 +12,9 @@ const button = tv({
   variants: {
     color: {
       primary:
-        'bg-blue-400 hover:bg-blue-300 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100',
+        'bg-blue-500 hover:bg-blue-600 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100',
       secondary: 'bg-red-500 hover:bg-red-600',
-      icon: 'bg-transparent hover:bg-slate-200 dark:hover:bg-slate-800 shadow-none',
+      icon: 'bg-blue-500  hover:bg-blue-600 dark:hover:bg-slate-800 dark:bg-slate-700 shadow-none',
     },
     size: {
       sm: 'h-8 p-2',

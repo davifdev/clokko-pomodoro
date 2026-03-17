@@ -10,35 +10,35 @@ const Tips = ({ cycleType }: TipsProps) => {
 
   const TipsMessageActive = {
     working: (
-      <p className="text-blue-300 dark:text-slate-100">
+      <p className="text-blue-500 dark:text-slate-100">
         Foque por <strong>{taskState.config.working} min!</strong>
       </p>
     ),
     shortResting: (
-      <p className="text-blue-300 dark:text-slate-100">
+      <p className="text-blue-500 dark:text-slate-100">
         Descanse por <strong>{taskState.config.shortResting} min!</strong>
       </p>
     ),
     longResting: (
-      <p className="text-blue-300 dark:text-slate-100">
+      <p className="text-blue-500 dark:text-slate-100">
         Descanse por <strong>{taskState.config.longResting} min!</strong>
       </p>
     ),
   };
   const TipsMessageNext = {
     working: (
-      <p className="text-blue-300 dark:text-slate-100">
+      <p className="text-blue-500 dark:text-slate-100">
         Próximo Ciclo é de <strong>{taskState.config.working} min!</strong>
       </p>
     ),
     shortResting: (
-      <p className="text-blue-300 dark:text-slate-100">
+      <p className="text-blue-500 dark:text-slate-100">
         Próximo descanso de{' '}
         <strong>{taskState.config.shortResting} min!</strong>
       </p>
     ),
     longResting: (
-      <p className="text-blue-300 dark:text-slate-100">
+      <p className="text-blue-500 dark:text-slate-100">
         Próximo descanso de <strong>{taskState.config.longResting} min!</strong>
       </p>
     ),

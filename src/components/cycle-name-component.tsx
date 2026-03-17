@@ -6,9 +6,7 @@ interface CycleNameProps {
 
 const CycleName = ({ children }: CycleNameProps) => {
   return (
-    <div
-      className={`h-7 text-sm font-semibold text-blue-300 md:text-lg dark:text-slate-100`}
-    >
+    <div className={`h-7 text-sm font-semibold md:text-lg dark:text-slate-100`}>
       {children}
     </div>
   );

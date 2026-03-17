@@ -31,8 +31,10 @@ const Header = () => {
   }, [theme]);
 
   const toggleIcon = {
-    light: <MoonIcon className="text-blue-300 dark:text-slate-100" size={18} />,
-    dark: <SunIcon className="text-blue-300 dark:text-slate-100" size={18} />,
+    light: (
+      <MoonIcon className="text-white-500 dark:text-slate-100" size={18} />
+    ),
+    dark: <SunIcon className="text-white-500 dark:text-slate-100" size={18} />,
   } as const;
 
   const toggleConfig = () => {
@@ -52,7 +54,7 @@ const Header = () => {
       <Container>
         <div className="flex items-center justify-between p-6">
           <Link to="/">
-            <h1 className="text-2xl font-semibold text-blue-300 dark:text-slate-100">
+            <h1 className="text-2xl font-semibold dark:text-slate-100">
               Clokko Pomodoro
             </h1>
           </Link>
@@ -68,7 +70,7 @@ const Header = () => {
                 <RouterLink href="/about" text="Sobre" />
               </li>
             </ul>
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
               <Button
                 onClick={toggleConfig}
                 color="icon"
@@ -76,7 +78,7 @@ const Header = () => {
                 aria-label="Configurações"
               >
                 <SettingsIcon
-                  className="text-blue-300 dark:text-slate-100"
+                  className="text-white dark:text-slate-100"
                   size={18}
                 />
               </Button>
@@ -96,7 +98,7 @@ const Header = () => {
                 className="block md:hidden"
               >
                 <MenuIcon
-                  className="text-blue-300 dark:text-slate-100"
+                  className="text-white dark:text-slate-100"
                   size={18}
                 />
               </Button>
